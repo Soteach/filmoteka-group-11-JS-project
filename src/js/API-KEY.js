@@ -1,3 +1,6 @@
+// Посилання на сайт
+// https://www.themoviedb.org/
+
 // API ключ (v3 auth)
 // c3923fa38d2dd62131b577696cc2f23f;
 
