@@ -19,4 +19,5 @@
 // Токен доступу для читання API(v4 auth)
 // eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMzkyM2ZhMzhkMmRkNjIxMzFiNTc3Njk2Y2MyZjIzZiIsInN1YiI6IjYzNThmODQwNGE0YmY2MDA5MGFhMjIyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.E06u476C5LSkl4_UXbtagn__Tc8KgRSmZL3EbRfQet4
 
-const API_KEY = (api_key = c3923fa38d2dd62131b577696cc2f23f);
+const API_KEY = 'api_key = c3923fa38d2dd62131b577696cc2f23f';
+const BASE_URL = 'https://www.themoviedb.org/';
