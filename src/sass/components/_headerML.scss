@@ -1,25 +1,36 @@
-.header__conteiner {
-
+.library-header {
+    text-align: center;
+    background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    background-color: rgba(0, 0, 0, 0.56);
+background-image: url(../images/bcg-mob.jpeg);
+@include tablet{
+    background-image: url(../images/bcg-tab.jpeg);
 }
-
-.header__logo {
-
+@include desktop {
+    background-image: url(../images/bcg.jpeg);
 }
-
-.logo__icon {
-
 }
+.library-header__conteiner {
+    width: 100%;
+    padding-top: 42px;
+    padding-bottom: 62px;
 
-.nav-menu {
+// }
+
+.filter {
     display: flex;
+    gap: 20px;
+    margin-top: 66px;
+    @include tablet{
+        gap: 32px;
+    }
+    @include desktop {
+        gap: 16px;
+    }
 }
-
-.nav-menu__link {
-    display: block;
-       
-}
-
 
 .filter__btn {
-
+    padding: 14px 36px;
 }
