@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 
 const refs = {
   searchForm: document.querySelector('.header-search__form'),
