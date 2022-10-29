@@ -1,28 +1,33 @@
-<div class="header__conteiner conteiner">
-  <a class="header__logo logo" href="./index.html"
-    ><svg class="logo__icon icon" width="24px" height="23px">
-      <use href="./images/film.svg"></use>
-    </svg>
-    Filmoteka
-  </a>
-  <nav class="nav">
-    <ul class="nav-menu list">
-      <li class="nav-menu__item">
-        <a class="nav-menu__link" href="./index.html">HOME</a>
-      </li>
-      <li class="nav-menu__item">
-        <a
-          class="nav-menu__link nav-menu__link--current"
-          href="./myLibrary.html"
-          >MY LIBRARY</a
-        >
-      </li>
-    </ul>
-  </nav>
-  <div class="filter">
-    <button type="button" class="filter__btn filter__btn--active">
-      WATCHED
-    </button>
-    <button type="button" class="filter__btn filter__btn--active">QUEUE</button>
+<header class="library-header">
+  <div class="library-header__container container">
+    <nav class="header__navigation">
+      <a href="/src/index.html" class="logo-header">
+        <svg class="logo-header__icon" width="24" height="24">
+          <use href="/src/images/icons.svg#icon-film"></use>
+        </svg>
+        <span class="logo-header__logo-text">Filmoteka</span>
+      </a>
+      <ul class="header__navigation-list list">
+        <li class="header__navigation-item">
+          <a class="header__navigation-item-link" href="./index.html">HOME</a>
+        </li>
+        <li class="header__navigation-item">
+          <a
+            class="header__navigation-item-link current"
+            href="./myLibrary.html"
+            >MY LIBRARY</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <div class="filter">
+      <button type="button" class="filter__btn filter__btn--active">
+        watched
+      </button>
+      <button type="button" class="filter__btn">queue</button>
+    </div>
+    <div class="message-conteiner">
+      <p class="message" id="message"></p>
+    </div>
   </div>
-</div>
+</header>
