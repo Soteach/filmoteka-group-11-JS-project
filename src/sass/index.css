@@ -790,6 +790,119 @@ body {
           box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
 }
 
+.gallery__set {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 32px;
+}
+
+@media screen and (min-width: 1200px) {
+  .gallery__set {
+    gap: 16px;
+  }
+}
+
+.gallery__item {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .gallery__item {
+    width: calc((100% - 30px) / 2);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .gallery__item {
+    width: calc((100% - 60px) / 3);
+  }
+}
+
+.film__poster {
+  border-radius: 5px;
+  width: 280px;
+  height: 398px;
+}
+
+@media screen and (min-width: 768px) {
+  .film__poster {
+    width: 336px;
+    height: 455px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .film__poster {
+    width: 394px;
+    height: 574px;
+  }
+}
+
+.film__description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.film__title {
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+@media screen and (min-width: 1200px) {
+  .film__title {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.film__info {
+  font-size: 12px;
+  line-height: 1.33;
+  color: #ff6b01;
+}
+
+@media screen and (min-width: 1200px) {
+  .film__info {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.film__rating {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: 8px;
+  width: 36px;
+  height: 16px;
+  font-size: 12px;
+  line-height: 1.17;
+  color: #ffffff;
+  background: #ff6b01;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 1200px) {
+  .film__rating {
+    width: 40px;
+    height: 20px;
+  }
+}
+
 .footer {
   height: 100px;
   background-color: #f7f7f7;
