@@ -736,12 +736,14 @@ body {
 @media screen and (min-width: 768px) {
   .filter {
     gap: 32px;
+    margin-top: 40px;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .filter {
     gap: 16px;
+    margin-top: 40px;
   }
 }
 
@@ -765,6 +767,7 @@ body {
   line-height: 1.33;
   text-transform: uppercase;
   color: #FFFFFF;
+  background-color: transparent;
   border: 1px solid #FFFFFF;
   border-radius: 5px;
 }

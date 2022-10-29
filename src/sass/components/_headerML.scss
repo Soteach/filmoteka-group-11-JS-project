@@ -57,9 +57,11 @@ background-image: url(../images/bcg-mob.jpeg);
     margin-top: 62px;
     @include tablet{
         gap: 32px;
+        margin-top: 40px;
     }
     @include desktop {
         gap: 16px;
+        margin-top: 40px;
     }
 }
 .filter__btn {
