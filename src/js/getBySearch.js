@@ -3,7 +3,7 @@
 const refs = {
   searchForm: document.querySelector('.header-search__form'),
   searchInput: document.querySelector('.header-search-input'),
-  container: document.querySelector('.header__conteiner'),
+  container: document.querySelector('.container'),
 };
 
 let currentPage = 1;
