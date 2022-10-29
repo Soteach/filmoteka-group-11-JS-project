@@ -1,0 +1,25 @@
+.darkTheme{
+       color : #ffffff;
+      background-color: #202020 ;
+       
+}
+
+.dark-theme-btn{
+      margin-left: 20px;
+      width: 30px;
+      height: 30px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url('../images/dark-theme/moon2.png');
+      background-size: contain;
+      background-color: transparent;
+    } 
+    
+    .dark-theme-edited{
+      background-image: url('../images/dark-theme/sun2.png');
+    }
+
+    .dark-footer{
+      background-color: #303030;
+      color:#f7f7f7;
+  }
