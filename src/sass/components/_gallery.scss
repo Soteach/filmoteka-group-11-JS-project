@@ -1,0 +1,82 @@
+.gallery__set {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    @include tablet {
+
+    }
+    @include desktop {
+        gap: 16px;
+    }
+}
+
+.gallery__item {
+    width: 100%;
+    @include tablet {
+        width: calc((100% - 30px) / 2);
+    }
+    @include desktop {
+        width: calc((100% - 60px) / 3);
+    }
+}
+
+.film__poster {
+border-radius: 5px;
+width: 280px;
+height: 398px;
+@include tablet {
+    width: 336px;
+    height: 455px;
+}
+@include desktop {
+    width: 394px;
+    height: 574px;
+}
+}
+
+.film__description {
+    display: flex;
+}
+
+.film__title {
+    font-size: 12px;
+    line-height: 1.33;
+    text-transform: uppercase;
+    color: $main-text-color;
+    @include desktop {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+}
+
+.film__info {
+    font-size: 12px;
+    line-height: 1.33;
+    color: $accent-color;
+
+    @include desktop {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+}
+
+.film__rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left: 8px;
+    width: 36px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 1.17;    
+    color: $background-main-color;
+    background: $accent-color;
+    border-radius: 5px;
+    
+    @include desktop {
+        width: 40px;
+        height: 20px;
+    }
+}
