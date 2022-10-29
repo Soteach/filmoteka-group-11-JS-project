@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 const refs = {
   searchForm: document.querySelector('.header-search__form'),
@@ -9,7 +9,6 @@ const refs = {
 let currentPage = 1;
 
 let markup = '';
-
 
 async function fetchMovies(inputQuery, currentPage) {
   const mainUrl = `https://api.themoviedb.org/3/search/movie`;
@@ -28,10 +27,9 @@ async function onSearch(event) {
   inputQuery = refs.searchInput.value;
   console.log(inputQuery);
   fetchMovies(inputQuery, 1);
-  
+
   renderMoviesList(1);
 }
-
 
 async function getGenres() {
   try {
@@ -46,42 +44,45 @@ async function getGenres() {
 
 let genreList1 = getGenres();
 // console.log(genreList1);
- async function renderMoviesList(pageNumber) {
+async function renderMoviesList(pageNumber) {
   currentPage = pageNumber;
 
   await fetchMovies(inputQuery, currentPage).then(res => {
     const moviesResult = res.results;
     if (moviesResult.length >= 1) {
-      markup = moviesResult.map(
-        ({
-          id,
-          title,
-          original_title,
-          poster_path,
-          genre_ids,
-          release_date,
-          vote_average,
-        }) => {
-          const genresList = genreList1;
-          const genres = genre_ids.map(item => {return item.genresList});
-          let genresMarkup = '';
-          if (genres.length === 0) {
-            genresMarkup = 'No genres';
-          } else if (genres.length < 3) {
-            genresMarkup = genres.join(',&nbsp;');
-          } else {
-            genresMarkup = `${genres[0]}, ${genres[1]}, Others`;
-          }
-          let poster = '';
-          poster_path === null
-            ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
-            : (poster = poster_path);
-          let relDate = '';
-          release_date === '' || release_date === undefined
-            ? (relDate = 'No date')
-            : (relDate = release_date.slice(0, 4));
+      markup = moviesResult
+        .map(
+          ({
+            id,
+            title,
+            original_title,
+            poster_path,
+            genre_ids,
+            release_date,
+            vote_average,
+          }) => {
+            const genresList = genreList1;
+            const genres = genre_ids.map(item => {
+              return item.genresList;
+            });
+            let genresMarkup = '';
+            if (genres.length === 0) {
+              genresMarkup = 'No genres';
+            } else if (genres.length < 3) {
+              genresMarkup = genres.join(',&nbsp;');
+            } else {
+              genresMarkup = `${genres[0]}, ${genres[1]}, Others`;
+            }
+            let poster = '';
+            poster_path === null
+              ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
+              : (poster = poster_path);
+            let relDate = '';
+            release_date === '' || release_date === undefined
+              ? (relDate = 'No date')
+              : (relDate = release_date.slice(0, 4));
 
-          return `<li>
+            return `<li>
             <img src="https://image.tmdb.org/t/p/w500${poster}" alt="${original_title}" class="img"  id="${id}"/>
             <div>
               <h2>${title}</h2>
@@ -90,11 +91,11 @@ let genreList1 = getGenres();
               </div>
             </div>
         </li>`;
-        }
-      ).join();
+          }
+        )
+        .join();
       console.log(markup);
     }
     refs.container.innerHTML = markup;
   });
 }
-
