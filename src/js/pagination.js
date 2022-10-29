@@ -8,9 +8,11 @@ function element(currentPage, totalPages) {
       currentPage - 1
     }, totalPages)">
   
-  <svg class="pagination-icon" width="16" height="16">
-    <use href="./images/symbol-defs.svg#icon-left"></use>
-  </svg>
+<svg class="icon icon-left"><use xlink:href="#icon-left"></use>
+<symbol id="icon-left" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M25.333 16h-18.667"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 25.333l-9.333-9.333 9.333-9.333"></path>
+</symbol></svg>
               </li>`;
   }
   const pages = getPages(currentPage, totalPages);
@@ -29,9 +31,11 @@ function element(currentPage, totalPages) {
   if (currentPage < totalPages) {
     liTag += `<li class="btn next" onclick="element(${
       currentPage + 1
-    }, totalPages)"><svg class="pagination-icon" width="16" height="16" >
-    <use href="./images/symbol-defs.svg#icon-right"></use>
-  </svg></li>`;
+    }, totalPages)"><svg class="icon icon-right"><use xlink:href="#icon-right"></use>
+    <symbol id="icon-right" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M6.667 16h18.667"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 25.333l9.333-9.333-9.333-9.333"></path>
+</symbol></svg></li>`;
   }
   console.log(liTag);
   ulTag.innerHTML = liTag;

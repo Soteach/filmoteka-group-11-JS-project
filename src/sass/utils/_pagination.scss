@@ -68,7 +68,7 @@ li {
 .btn:hover {
     color: aliceblue;
     background-color: #FF6B08;
-    ;
+
 
 }
 
@@ -83,6 +83,18 @@ li {
     background-color: #F7F7F7;
 }
 
-.pagination-icon {
-    fill: black;
+.btn {
+    stroke: #000;
+    fill: none;
+
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+}
+
+.btn:hover {
+    stroke: white;
+    fill: none
 }
