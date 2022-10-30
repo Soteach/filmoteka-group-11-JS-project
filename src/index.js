@@ -8,3 +8,4 @@ import './js/firebaseFunc';
 import './js/firebaseNotifications';
 import './js/spinner';
 import './js/pagination';
+import './js/oneCardTests';
