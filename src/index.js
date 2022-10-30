@@ -2,5 +2,9 @@ import './js/fetchApi';
 import './js/renderMarkup';
 import './js/startPagStorage';
 import './js/nightMode';
-
+import './js/auth-modal-open';
+import './js/firebase';
+import './js/firebaseFunc';
+import './js/firebaseNotifications';
+import './js/spinner';
 import './js/pagination';
