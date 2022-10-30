@@ -5,8 +5,8 @@ import { refs } from './refs';
 const refs = {
   searchForm: document.querySelector('.header-search__form'),
   searchInput: document.querySelector('.header-search-input'),
-
   container: document.querySelector('.gallery__set'),
+  notifyError: document.querySelector('.form-text'),
 };
 
 import { renderFilmsMarkup } from './renderMarkup';
@@ -37,6 +37,10 @@ async function onSearch(event) {
   inputQuery = event.target.elements.input.value;
 
   const data = await fetchMovies(inputQuery, 1);
+  if (data.length === 0) {
+    return (refs.notifyError.textContent =
+      'Search result not successful. Enter the correct movie name.');
+  }
 
   if (data) {
     Notiflix.Notify.warning('No such films found. Try again!');

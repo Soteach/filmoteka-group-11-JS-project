@@ -12,9 +12,9 @@ export function renderFilmsMarkup(films) {
                 <div class="films__img">
                     <img src=${poster} alt="${title || name || 'No title'}" loading="lazy" id=${id}>
                 </div>
-                <div class="films__description" id=${id}>
-                  <p class="films__title" id=${id}>${title || name || 'No title'}</p>
-                  <div class="films__meta" id=${id}>
+                <div class="film__description" id=${id}>
+                  <p class="film__title" id=${id}>${title || name || 'No title'}</p>
+                  <div class="film__info" id=${id}>
                     <span class="films__genres" id=${id}>${
         getGenres(genre_ids, 3) || 'No genres info'
       }</span>
