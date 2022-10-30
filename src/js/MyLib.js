@@ -1,6 +1,5 @@
 import { refs } from './refs';
 import axios from 'axios';
-import notiflix from 'notiflix';
 import Notiflix from 'notiflix';
 
 const WATCHED_KEY = 'Watched_KEY';
@@ -12,7 +11,6 @@ const akaLocalStorage = {
 };
 
 refs.btnWatched.addEventListener('click', goToWatched);
-
 refs.btnQueue.addEventListener('click', goToQueue);
 
 // refs.btnModalWatched.addEventListener('click', putWatchedIdtoLocalStorage);

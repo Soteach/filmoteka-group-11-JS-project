@@ -52,10 +52,6 @@ async function onSearch(event) {
   refs.spinner.classList.add('visually-hidden');
 }
 
-async function renderMoviesList(pageNumber) {
-  currentPage = pageNumber;
-}
-
 // async function addPagination() {
 //   await fetchMovies(inputQuery, currentPage).then(res => {
 //     totalPages = res.total_pages;
