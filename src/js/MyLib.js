@@ -1,11 +1,10 @@
 import { refs } from './refs';
 import axios from 'axios';
-import { getGenres } from './renderMarkup';
-
-import { spinnerPlay, spinnerStop } from './spinner';
+import notiflix from 'notiflix';
+import Notiflix from 'notiflix';
 
 const WATCHED_KEY = 'Watched_KEY';
-const QUEUE_KEY = 'Watched_KEY';
+const QUEUE_KEY = 'Queue_KEY';
 
 const akaLocalStorage = {
   watched: [],
@@ -28,6 +27,7 @@ function putWatchedIdtoLocalStorage(event) {
 
     const filmSTRING = JSON.stringify(akaLocalStorage.watched);
     localStorage.setItem(WATCHED_KEY, filmSTRING);
+
     return;
   }
 
@@ -46,6 +46,7 @@ function putQueueIdtoLocalStorage(event) {
 
     const filmSTRING = JSON.stringify(akaLocalStorage.queue);
     localStorage.setItem(QUEUE_KEY, filmSTRING);
+
     return;
   }
 
@@ -59,37 +60,43 @@ function putQueueIdtoLocalStorage(event) {
 async function goToWatched() {
   refs.spinner.classList.remove('visually-hidden');
 
-  const idFilmsArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
+  try {
+    const idFilmsArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
+    const qweqwe = await Promise.all(idFilmsArray.map(fetchMovieById));
 
-  const qweqwe = await Promise.all(idFilmsArray.map(fetchMovieById));
+    renderFilmsMarkup(qweqwe);
 
-  //   console.log(qweqwe);
+    refs.spinner.classList.add('visually-hidden');
+  } catch (error) {
+    Notiflix.Notify.failure('Your Watched gallery is empty!');
+    refs.spinner.classList.add('visually-hidden');
 
-  renderFilmsMarkup(qweqwe);
-  refs.spinner.classList.add('visually-hidden');
+    return;
+  }
 }
 
 async function goToQueue() {
-  spinnerPlay();
-  const idFilmsArray = JSON.parse(localStorage.getItem(QUEUE_KEY));
+  refs.spinner.classList.remove('visually-hidden');
 
-  const qweqwe = await Promise.all(idFilmsArray.map(fetchMovieById));
+  try {
+    const idFilmsArray = JSON.parse(localStorage.getItem(QUEUE_KEY));
+    const qweqwe = await Promise.all(idFilmsArray.map(fetchMovieById));
 
-  //   console.log(qweqwe);
+    renderFilmsMarkup(qweqwe);
+    refs.spinner.classList.add('visually-hidden');
+  } catch (error) {
+    Notiflix.Notify.failure('Your Queue gallery is empty!');
+    refs.spinner.classList.add('visually-hidden');
 
-  renderFilmsMarkup(qweqwe);
-  spinnerStop();
+    return;
+  }
 }
 
-// console.dir(refs.libgallerySet);
-
 function renderFilmsMarkup(films) {
-  //   console.log(films);
-
   refs.libgallerySet.innerHTML = '';
 
   films
-    .map(({ poster_path, genre_ids, title, original_title, release_date, first_air_date, id }) => {
+    .map(({ poster_path, genres, title, original_title, release_date, first_air_date, id }) => {
       const poster = poster_path
         ? `https://image.tmdb.org/t/p/w400${poster_path}`
         : `https://image.tmdb.org/t/p/w400/yEvumAoCB9Z7o9dAzjxrjcwo2FQ.jpg`;
@@ -102,10 +109,10 @@ function renderFilmsMarkup(films) {
                 <div class="films__description" id=${id}>
                   <p class="films__title" id=${id}>${title || original_title || 'No title'}</p>
                   <div class="films__meta" id=${id}>
-                    <span class="films__genres" id=${id}>
-                    
-          'No genres info'
+                    <span class="films__genres" id=${id}>${
+        getGenres(genres) || 'No genres info'
       }</span>
+                    
                     <span class="films__sep" id=${id}>|</span>
                     <span class="films__data" id=${id}>${
         new Date(release_date).getFullYear() || new Date(first_air_date).getFullYear() || 'No info'
@@ -132,4 +139,22 @@ async function fetchMovieById(filmId) {
   }
 }
 
-// ${getGenres(genre_ids, 3) ||
+function getGenres(genres) {
+  const arr = [];
+
+  for (let index = 0; index < genres.length; index++) {
+    const name = Object.values(genres[index]);
+    arr.push(name[1]);
+  }
+
+  const ArrToJoin = [];
+
+  if (arr.length > 3) {
+    ArrToJoin.push(arr[0]);
+    ArrToJoin.push(arr[1]);
+    ArrToJoin.push('Other');
+    return ArrToJoin.join(', ');
+  }
+
+  return arr.join(', ');
+}

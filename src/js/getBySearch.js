@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { refs } from './refs';
 
 const refs = {
   searchForm: document.querySelector('.header-search__form'),
@@ -30,18 +31,25 @@ async function fetchMovies(inputQuery, currentPage) {
 }
 
 let inputQuery = '';
+
 refs.searchForm.addEventListener('submit', onSearch);
 
 async function onSearch(event) {
   event.preventDefault();
+  refs.spinner.classList.remove('visually-hidden');
 
-  inputQuery = refs.searchInput.value;
+  // const searchInput = event.target.elements.input.value;
+
+  // console.dir(searchInput);
+
+  inputQuery = event.target.elements.input.value;
 
   // console.log(inputQuery);
   // fetchMovies(inputQuery, 1);
   const data = await fetchMovies(inputQuery, 1);
 
   renderFilmsMarkup(data);
+  refs.spinner.classList.add('visually-hidden');
 }
 
 async function renderMoviesList(pageNumber) {
