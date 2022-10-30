@@ -22,13 +22,10 @@ refs.btnQueue.addEventListener('click', goToQueue);
 
 function putWatchedIdtoLocalStorage(event) {
   const filmId = event.target.dataset.id;
-  
 
-    if (akaLocalStorage.watched.includes(filmId)) {
-
-        akaLocalStorage.watched.
-    }
-
+  if (akaLocalStorage.watched.includes(filmId)) {
+    // akaLocalStorage.watched.
+  }
 
   akaLocalStorage.watched.push(filmId);
 
