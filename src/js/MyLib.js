@@ -24,7 +24,11 @@ function putWatchedIdtoLocalStorage(event) {
   const filmId = event.target.dataset.id;
 
   if (akaLocalStorage.watched.includes(filmId)) {
-    // akaLocalStorage.watched.
+    akaLocalStorage.watched.splice(akaLocalStorage.watched.indexOf(filmId), 1);
+
+    const filmSTRING = JSON.stringify(akaLocalStorage.watched);
+    localStorage.setItem(WATCHED_KEY, filmSTRING);
+    return;
   }
 
   akaLocalStorage.watched.push(filmId);
@@ -36,6 +40,15 @@ function putWatchedIdtoLocalStorage(event) {
 
 function putQueueIdtoLocalStorage(event) {
   const filmId = event.target.dataset.id;
+
+  if (akaLocalStorage.queue.includes(filmId)) {
+    akaLocalStorage.queue.splice(akaLocalStorage.queue.indexOf(filmId), 1);
+
+    const filmSTRING = JSON.stringify(akaLocalStorage.queue);
+    localStorage.setItem(QUEUE_KEY, filmSTRING);
+    return;
+  }
+
   akaLocalStorage.queue.push(filmId);
 
   const filmSTRING = JSON.stringify(akaLocalStorage.queue);
