@@ -1,6 +1,6 @@
-
 import axios from 'axios';
-import { spinnerPlay, spinnerStop } from './spinner';
+import Notiflix from 'notiflix';
+import { refs } from './refs';
 
 const refs = {
   searchForm: document.querySelector('.header-search__form'),
@@ -27,12 +27,14 @@ async function fetchMovies(inputQuery, currentPage) {
 }
 
 let inputQuery = '';
+
 refs.searchForm.addEventListener('submit', onSearch);
 
 async function onSearch(event) {
   event.preventDefault();
+  refs.spinner.classList.remove('visually-hidden');
 
-  inputQuery = refs.searchInput.value;
+  inputQuery = event.target.elements.input.value;
 
   const data = await fetchMovies(inputQuery, 1);
   if (data.length === 0) {
@@ -40,6 +42,31 @@ async function onSearch(event) {
       'Search result not successful. Enter the correct movie name.');
   }
 
+  if (data) {
+    Notiflix.Notify.warning('No such films found. Try again!');
+    return;
+  }
+
   renderFilmsMarkup(data);
+  refs.spinner.classList.add('visually-hidden');
 }
 
+// async function addPagination() {
+//   await fetchMovies(inputQuery, currentPage).then(res => {
+//     totalPages = res.total_pages;
+//     return totalPages;
+//   });
+//   if (totalPages === 0) {
+//     refs.searchErrorNotif.textContent =
+//       'Search result not successful. Enter the correct movie name and try again';
+//     $(`#pagination-container`).pagination(`destroy`);
+//     refs.moviesList.innerHTML = ``;
+//     return;
+//   } else if (inputQuery === ``) {
+//     refs.searchErrorNotif.textContent = 'Please enter the name of the movie';
+//     $(`#pagination-container`).pagination(`destroy`);
+//     refs.moviesList.innerHTML = ``;
+//     return;
+//   }
+//   refs.searchErrorNotif.textContent = '';
+// }
