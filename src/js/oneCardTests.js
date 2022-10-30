@@ -98,20 +98,14 @@ async function fetchMovieById(filmId) {
 
   async function pleaseWork(event){
     event.preventDefault()
-    console.log(event);
     if (event.target.nodeName !== "IMG") {
       return
     }
     const response = await fetchMovieById(event.target.id)
-    console.log(response);
     const markup = cardMarkup(response)
-    console.log(markup);
     refs.modalRef.innerHTML = markup
-    console.log('pyk');
     toggleModal()
-    console.log(refs.modalRef.classList);
     addListeners()
-    console.log('srenk');
       
 
 } 
