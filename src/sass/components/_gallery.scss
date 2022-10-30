@@ -87,3 +87,27 @@ img {
     height: 20px;
   }
 }
+
+
+.img {
+  display: block;
+  max-width: 100%;
+  height: 398px;
+  cursor: pointer;
+
+  @include tablet {
+    height: 455px;
+  }
+
+  @include desktop {
+    height: 574px;
+  }
+}
+
+.item__text {
+  margin-top: 8px;
+}
+
+.item__wrap {
+  display: flex;
+}

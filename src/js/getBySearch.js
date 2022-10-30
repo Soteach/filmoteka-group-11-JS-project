@@ -94,10 +94,10 @@ async function renderMoviesList(pageNumber) {
 
             return `<li class="gallery__item">
             <img src="https://image.tmdb.org/t/p/w500${poster}" alt="${original_title}" class="img"  id="${id}"/>
-            <div>
-              <h2>${title}</h2>
-              <div>
-                <p>${genresMarkup} | ${relDate}</p>
+            <div class="item__text">
+              <h2 class="film__title">${title}</h2>
+              <div class="item__wrap">
+                <p class="film__info">${genresMarkup} | ${relDate}</p>
               </div>
             </div>
         </li>`;
