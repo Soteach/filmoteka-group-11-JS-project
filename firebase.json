@@ -6,10 +6,7 @@
     },
     "ui": {
       "enabled": true,
-      "port": 1236
+      "port": 1237
     }
-  },
-  "auth": {
-    "port": "9099"
   }
 }
