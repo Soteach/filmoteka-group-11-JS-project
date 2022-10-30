@@ -1,0 +1,29 @@
+.students__list {
+  display: flex;
+}
+.students__item {
+  margin-top: 7px;
+}
+
+.students__wrap {
+  margin-right: 14px;
+}
+
+.students__item_main::before {
+  content: '';
+  display: inline-block;
+  margin-right: 10px;
+  background-image: url('../images/crown-svgrepo-com.svg');
+  color: white;
+  width: 24px;
+  height: 24px;
+}
+
+// .students__item::before {
+//   content: '';
+//   display: inline-block;
+//   margin-right: 10px;
+//   background-image: url('');
+//   width: 24px;
+//   height: 24px;
+// }

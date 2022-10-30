@@ -14,4 +14,8 @@ export const refs = {
   btnLogout: document.querySelector('.log-out_js'),
   btnGoogle: document.querySelector('.google__btn'),
   authBackdrop: document.querySelector('.js-backdrop'),
+  studBtn: document.querySelector('[data-team-modal-open]'),
+  studModal: document.querySelector('[data-modal-open]'),
+  closeStudBtn: document.querySelector('[data-modal-clos]'),
+  studBackdrop: document.querySelector('.js-backdrop-stud'),
 };
