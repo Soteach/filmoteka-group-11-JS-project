@@ -36,4 +36,11 @@ function createStartList() {
     .catch(error => console.log(error));
 }
 
+function onSelectPage(page) {
+  loadAndRenderTrendingMovies(page);
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
 createStartList();

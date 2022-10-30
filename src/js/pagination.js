@@ -1,10 +1,18 @@
 const ulTag = document.querySelector('.pagination');
-let totalPages = 20;
-function element(currentPage, totalPages) {
+
+//onSelectPage возвращает номер страницы которую нужно загрузить
+export function renderPager(currentPage, totalPages, onSelectPage) {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+  window.onSelectPage = onSelectPage;
   let liTag = '';
   let activLi;
   if (currentPage > 1) {
-    liTag += `<li class="btn prev" onclick="element(${currentPage - 1}, totalPages)">
+    liTag += `<li class="btn prev" onclick="element(${
+      currentPage - 1
+    }, totalPages)">
   
 <svg class="icon icon-left"><use xlink:href="#icon-left"></use>
 <symbol id="icon-left" viewBox="0 0 32 32">
@@ -16,14 +24,12 @@ function element(currentPage, totalPages) {
   const pages = getPages(currentPage, totalPages);
   for (let i = 0; i < pages.length; i++) {
     if (pages[i] === currentPage) {
-      // console.log(pages[i]);
       activLi = 'active';
       liTag += `<li class="numb ${activLi}">${pages[i]}</li>`;
     } else if (pages[i] === '...') {
       liTag += `<li class="dots"><span>...</span></li>`;
     } else {
       liTag += `<li class="numb" onclick="element(${pages[i]}, totalPages)">${pages[i]}</li>`;
-      // console.log(pages[i]);
     }
   }
   if (currentPage < totalPages) {
@@ -35,7 +41,6 @@ function element(currentPage, totalPages) {
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 25.333l9.333-9.333-9.333-9.333"></path>
 </symbol></svg></li>`;
   }
-  // console.log(liTag);
   ulTag.innerHTML = liTag;
 }
 
@@ -82,5 +87,3 @@ function addPageRange(elements, start, end) {
 function addEllipsis(elements) {
   elements.push('...');
 }
-
-element(5, totalPages);
