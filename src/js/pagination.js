@@ -1,15 +1,10 @@
 const ulTag = document.querySelector('.pagination');
-
-//onSelectPage возвращает номер страницы которую нужно загрузить
-export function renderPager(currentPage, totalPages, onSelectPage) {
-  window.onSelectPage = onSelectPage;
+let totalPages = 20;
+function element(currentPage, totalPages) {
   let liTag = '';
   let activLi;
-  function sho(page) {
-    console.log(page);
-  }
   if (currentPage > 1) {
-    liTag += `<li class="btn prev" onclick="onSelectPage(${currentPage - 1})">
+    liTag += `<li class="btn prev" onclick="element(${currentPage - 1}, totalPages)">
   
 <svg class="icon icon-left"><use xlink:href="#icon-left"></use>
 <symbol id="icon-left" viewBox="0 0 32 32">
@@ -27,17 +22,20 @@ export function renderPager(currentPage, totalPages, onSelectPage) {
     } else if (pages[i] === '...') {
       liTag += `<li class="dots"><span>...</span></li>`;
     } else {
-      liTag += `<li class="numb" onclick="onSelectPage(${pages[i]})">${pages[i]}</li>`;
+      liTag += `<li class="numb" onclick="element(${pages[i]}, totalPages)">${pages[i]}</li>`;
+      // console.log(pages[i]);
     }
   }
   if (currentPage < totalPages) {
-    liTag += `<li class="btn next" onclick="onSelectPage(${currentPage + 1}
-    )"><svg class="icon icon-right"><use xlink:href="#icon-right"></use>
+    liTag += `<li class="btn next" onclick="element(${
+      currentPage + 1
+    }, totalPages)"><svg class="icon icon-right"><use xlink:href="#icon-right"></use>
     <symbol id="icon-right" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M6.667 16h18.667"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 25.333l9.333-9.333-9.333-9.333"></path>
 </symbol></svg></li>`;
   }
+  // console.log(liTag);
   ulTag.innerHTML = liTag;
 }
 
@@ -85,4 +83,4 @@ function addEllipsis(elements) {
   elements.push('...');
 }
 
-// element(1, totalPages);
+element(5, totalPages);

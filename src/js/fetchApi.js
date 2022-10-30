@@ -6,7 +6,6 @@ export default class TrendingMovies {
     this.page = 1;
     this.query = '';
     this.results = Number;
-    this.totalPages = Number;
   }
 
   fetchTrendingMovies() {
@@ -15,7 +14,8 @@ export default class TrendingMovies {
     )
       .then(response => response.json())
       .then(data => {
-        return data;
+        this.results = data.total_results;
+        return data.results;
       });
   }
   fetchMovie() {
@@ -30,8 +30,8 @@ export default class TrendingMovies {
   }
 
   fetchGenres() {
-    return fetch(
-      `${BASE_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`
-    ).then(response => response.json());
+    return fetch(`${BASE_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`).then(response =>
+      response.json()
+    );
   }
 }
