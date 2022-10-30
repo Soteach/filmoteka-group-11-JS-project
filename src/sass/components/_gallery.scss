@@ -19,7 +19,8 @@ img {
   gap: 16px;
 }
 
-.gallery__set {
+.gallery__set,
+.lib-gallery__set {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;

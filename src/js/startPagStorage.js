@@ -30,7 +30,7 @@ function createStartList() {
 
       // options.totalItems = trendingMovies.getResults();
 
-      setToLocacStorageAnswer(data);
+      // setToLocacStorageAnswer(data);
     })
 
     .catch(error => console.log(error));
