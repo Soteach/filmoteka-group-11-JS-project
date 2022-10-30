@@ -19,9 +19,12 @@ export const refs = {
   closeStudBtn: document.querySelector('[data-modal-clos]'),
   studBackdrop: document.querySelector('.js-backdrop-stud'),
   gallerySet: document.querySelector('.gallery__set'),
+
   libgallerySet: document.querySelector('.lib-gallery__set'),
+  
   btnWatched: document.querySelector('.js-btn-watched'),
   btnQueue: document.querySelector('.js-btn-queue'),
   btnModalWatched: document.querySelector('.js-WatchedButton'),
   btnModalQueue: document.querySelector('.js-QueueButton'),
+  modalRef: document.querySelector('#myModal'),
 };

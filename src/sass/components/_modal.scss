@@ -257,3 +257,14 @@
     width: 290px;
   }
 }
+
+.modal {
+  //   // display: none;
+    position: fixed;
+  //   z-index: 1;
+    left: 50%;
+    top: 50%;
+    width: 806;
+    height: 558;
+    overflow: auto;
+  }

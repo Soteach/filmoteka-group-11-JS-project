@@ -1,18 +1,20 @@
 import { refs } from "./refs";
 import axios from "axios";
-import * as basicLightbox from 'basiclightbox'
+import { putQueueIdtoLocalStorage, putWatchedIdtoLocalStorage, akaLocalStorage } from "./MyLib";
+
+const WATCHED_KEY = 'Watched_KEY';
+const QUEUE_KEY = 'Queue_KEY';
 
 const API_KEY = 'c3923fa38d2dd62131b577696cc2f23f'
 const mainUrl = `https://api.themoviedb.org/3`;
 
-
-//api.themoviedb.org/3/movie/436270?api_key=249f222afb1002186f4d88b2b5418b55?
+refs.gallery.addEventListener('click', pleaseWork);
 
 async function fetchMovieById(filmId) {
     const filters = `/movie/${filmId}?api_key=${API_KEY}`;
     try {
         const response = await axios.get(`${mainUrl}${filters}`);
-        console.log(response.data);
+        // console.log(response.data);
     return response.data
     } catch (error) {
         console.log(error);
@@ -80,15 +82,11 @@ async function fetchMovieById(filmId) {
       <div class="cardItem__listButton">
         <ul class="storage">
           <li class="storage__item">
-            <label class="storage__label ">
-              <input type="checkbox" value="Watched" class="storage__input visuallyhidden" />
-              <span class="storage__btn js-WatchedButton" >Watched</span>
+              <button class="storage__btn js-WatchedButton" data-id=${id} >Watched</button>
             </label>
           </li>
           <li class="storage__item">
-            <label class="storage__label ">
-              <input type="checkbox" value="Queue" class="storage__input  visuallyhidden" />
-              <span class="storage__btn js-QueueButton" >Queue</span>
+              <button class="storage__btn js-QueueButton" data-id=${id} >Queue</button>
             </label>
           </li>
         </ul>
@@ -99,39 +97,54 @@ async function fetchMovieById(filmId) {
   }
 
   async function pleaseWork(event){
-    const response = await fetchMovieById(55555)
-    const markup = cardMarkup(response)
-    
-
     event.preventDefault()
+    console.log(event);
     if (event.target.nodeName !== "IMG") {
       return
     }
-  const clickedImg = event.target
-  
-  const instance = basicLightbox.create(`
-    <img src="${clickedImg.src}">`, {
-    onShow: (instance) => {
-      // Close when hitting escape.
-      galleryContainer.onkeydown = function (event) {
-        event = event || window.event;
-        let isEscape = false;
-        if ("key" in event) {
-          isEscape = (event.key === "Escape" || event.key === "Esc");
-        } else {
-          isEscape = (event.keyCode === 27);
-        }
-        if (isEscape) {
-          instance.close();
-        }
-      };
-    }
-  }
-)
-  instance.innerHtml = markup
-  instance.show()
+    const response = await fetchMovieById(event.target.id)
+    console.log(response);
+    const markup = cardMarkup(response)
+    console.log(markup);
+    refs.modalRef.innerHTML = markup
+    console.log('pyk');
+    toggleModal()
+    console.log(refs.modalRef.classList);
+    addListeners()
+    console.log('srenk');
+      
 
 } 
-    
+
+function toggleModal(){
+  refs.modalRef.classList.toggle('visually-hidden')
+  document.body.classList.toggle('stop-scroll');
+}
+
+function addListeners(){
   
 
+  const btnModalWatched = document.querySelector('.js-WatchedButton');
+  const btnModalQueue = document.querySelector('.js-QueueButton');
+ 
+  btnModalWatched.addEventListener('click', putWatchedIdtoLocalStorage);
+  btnModalQueue.addEventListener('click', putQueueIdtoLocalStorage);
+  }
+    
+
+
+// function closeModal(){
+//   refs.btnModalWatched.removeEventListener('click', putWatchedIdtoLocalStorage);
+// refs.btnModalQueue.removeEventListener('click', putQueueIdtoLocalStorage);
+//   if(refs.modalRef.classList.contains('visually-hidden')){
+//     return
+//   }
+
+  
+// }
+
+
+
+
+
+  
