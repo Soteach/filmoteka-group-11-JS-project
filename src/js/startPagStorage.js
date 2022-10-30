@@ -1,5 +1,6 @@
 import TrendingMovies from './fetchAPI';
 import { renderFilmsMarkup } from './renderMarkup';
+import { renderPager } from './pagination';
 
 const trendingMovies = new TrendingMovies();
 
@@ -18,22 +19,27 @@ let options = {
 };
 
 function createStartList() {
+  console.log(this.options);
   trendingMovies.fetchGenres().then(({ genres }) => {
     const arr = [...genres];
     localStorage.setItem('genres', JSON.stringify(arr));
   });
 
+  loadAndRenderTrendingMovies(1);
+}
+
+function loadAndRenderTrendingMovies(page) {
+  trendingMovies.page = page;
   trendingMovies
     .fetchTrendingMovies()
     .then(data => {
-      renderFilmsMarkup(data);
-
-      // options.totalItems = trendingMovies.getResults();
-
-      // setToLocacStorageAnswer(data);
+      renderFilmsMarkup(data.results);
+      renderPager(data.page, data.total_pages, onSelectPage);
     })
-
     .catch(error => console.log(error));
 }
 
+function onSelectPage(page) {
+  loadAndRenderTrendingMovies(page);
+}
 createStartList();
