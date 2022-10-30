@@ -3,8 +3,14 @@ img {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 320px;
   margin: 0 auto;
+  @include tablet {
+    max-width: 768px;
+  }
+  @include desktop {
+    max-width: 1200px;
+  }
 }
 
 .gallery {
@@ -16,9 +22,12 @@ img {
 .gallery__set {
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
 
   @include tablet {
+    gap: 32px;
   }
+
   @include desktop {
     gap: 16px;
   }
@@ -27,7 +36,7 @@ img {
 .gallery__item {
   width: 100%;
   @include tablet {
-    width: calc((100% - 30px) / 2);
+    width: calc((100% - 32px) / 2);
   }
   @include desktop {
     width: calc((100% - 32px) / 3);
