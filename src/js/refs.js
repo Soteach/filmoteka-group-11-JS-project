@@ -14,4 +14,5 @@ export const refs = {
   btnLogout: document.querySelector('.log-out_js'),
   btnGoogle: document.querySelector('.google__btn'),
   authBackdrop: document.querySelector('.js-backdrop'),
+  gallerySet: document.querySelector('.gallery__set'),
 };

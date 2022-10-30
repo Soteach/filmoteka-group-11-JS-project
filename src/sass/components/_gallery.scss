@@ -2,15 +2,21 @@ img {
   border-radius: 5px;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
+  gap: 16px;
 }
 
 .gallery__set {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
+
   @include tablet {
   }
   @include desktop {
@@ -24,7 +30,7 @@ img {
     width: calc((100% - 30px) / 2);
   }
   @include desktop {
-    width: calc((100% - 60px) / 3);
+    width: calc((100% - 32px) / 3);
   }
 }
 

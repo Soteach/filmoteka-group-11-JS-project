@@ -28,7 +28,7 @@ function createStartList() {
     .then(data => {
       renderFilmsMarkup(data);
 
-      options.totalItems = trendingMovies.getResults();
+      // options.totalItems = trendingMovies.getResults();
 
       setToLocacStorageAnswer(data);
     })
