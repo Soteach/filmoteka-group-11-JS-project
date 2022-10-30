@@ -9,5 +9,5 @@ import './js/firebase/firebaseNotifications';
 import './js/firebase/firebase-database';
 import './js/spinner';
 import './js/pagination';
-import './js/oneCardTests';
+import './js/modalIneractions';
 import './js/studentModal';
