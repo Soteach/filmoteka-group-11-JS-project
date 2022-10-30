@@ -1,4 +1,4 @@
-import { refs } from './refs';
+import { refs } from '../refs';
 import Notiflix from 'notiflix';
 import {
   showLoginError,

@@ -1,4 +1,4 @@
-import { refs } from './refs';
+import { refs } from '../refs';
 
 refs.signInBtn.addEventListener('click', onSignInModal);
 refs.closeAuthBtn.addEventListener('click', onSignInModal);
