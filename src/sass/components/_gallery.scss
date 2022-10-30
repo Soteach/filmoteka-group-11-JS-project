@@ -80,7 +80,9 @@ img {
   }
 }
 
-.films__description {
+.film__description {
+  margin-top: 8px;
+
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
