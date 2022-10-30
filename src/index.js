@@ -11,4 +11,3 @@ import './js/spinner';
 import './js/pagination';
 import './js/oneCardTests';
 import './js/studentModal';
-import './js/MyLib';

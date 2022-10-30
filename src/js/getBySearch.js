@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { renderPager } from './pagination';
 
 const refs = {
   searchForm: document.querySelector('.header-search__form'),
@@ -24,9 +25,7 @@ async function fetchMovies(inputQuery, currentPage) {
 
   const { data } = response;
 
-  // console.log(data.results);
-
-  return data.results;
+  return data;
 }
 
 let inputQuery = '';
@@ -41,7 +40,16 @@ async function onSearch(event) {
   // fetchMovies(inputQuery, 1);
   const data = await fetchMovies(inputQuery, 1);
 
-  renderFilmsMarkup(data);
+  renderUI(data);
+}
+
+async function renderUI(data) {
+  renderFilmsMarkup(data.results);
+  renderPager(data.page, data.total_pages, async page => {
+    fetchMovies(inputQuery, page).then(data => {
+      renderUI(data);
+    });
+  });
 }
 
 async function renderMoviesList(pageNumber) {
@@ -56,12 +64,12 @@ async function renderMoviesList(pageNumber) {
 //   if (totalPages === 0) {
 //     refs.searchErrorNotif.textContent =
 //       'Search result not successful. Enter the correct movie name and try again';
-//     $(`#pagination-container`).pagination(`destroy`);
+//     $(#pagination-container).pagination(destroy);
 //     refs.moviesList.innerHTML = ``;
 //     return;
 //   } else if (inputQuery === ``) {
 //     refs.searchErrorNotif.textContent = 'Please enter the name of the movie';
-//     $(`#pagination-container`).pagination(`destroy`);
+//     $(#pagination-container).pagination(destroy);
 //     refs.moviesList.innerHTML = ``;
 //     return;
 //   }

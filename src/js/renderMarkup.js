@@ -6,13 +6,11 @@ export function renderFilmsMarkup(films) {
   films
     .map(({ poster_path, genre_ids, title, name, release_date, first_air_date, id }) => {
       const poster = poster_path
-        ? `https://image.tmdb.org/t/p/w400${poster_path}`
-        : `https://image.tmdb.org/t/p/w400/yEvumAoCB9Z7o9dAzjxrjcwo2FQ.jpg`;
+        ? `https://image.tmdb.org/t/p/originalhttps://image.tmdb.org/t/p/w400${poster_path}`
+        : `https://image.tmdb.org/t/p/originalhttps://image.tmdb.org/t/p/w400/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg`;
       return `<li class="gallery__item" data-id=${id || `No ID`}>
-                <div class="films__poster">
-                    <img src=https://image.tmdb.org/t/p/original${poster} alt="${
-        title || name || 'No title'
-      }" loading="lazy" id=${id}>
+                <div class="films__img">
+                    <img src=${poster} alt="${title || name || 'No title'}" loading="lazy" id=${id}>
                 </div>
                 <div class="film__description" id=${id}>
                   <p class="film__title" id=${id}>${title || name || 'No title'}</p>

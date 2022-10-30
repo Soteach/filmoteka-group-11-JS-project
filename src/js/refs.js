@@ -1,5 +1,5 @@
 export const refs = {
-  searchForm: document.querySelector('.search-form'),
+  searchForm: document.querySelector('.header-search__form'),
   gallery: document.querySelector('.gallery'),
   spinner: document.querySelector('.loader'),
   gallerySet: document.querySelector('.gallery__set'),
@@ -24,7 +24,6 @@ export const refs = {
   
   btnWatched: document.querySelector('.js-btn-watched'),
   btnQueue: document.querySelector('.js-btn-queue'),
-  btnModalWatched: document.querySelector('.js-WatchedButton'),
-  btnModalQueue: document.querySelector('.js-QueueButton'),
+  
   modalRef: document.querySelector('#myModal'),
 };

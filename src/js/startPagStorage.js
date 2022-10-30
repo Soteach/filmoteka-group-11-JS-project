@@ -6,7 +6,7 @@ const trendingMovies = new TrendingMovies();
 function setToLocacStorageAnswer(answer) {
   localStorage.setItem('currentFilms', JSON.stringify(answer));
 }
-
+// 1111
 let options = {
   totalItems: 100,
   itemsPerPage: 20,
@@ -36,4 +36,7 @@ function createStartList() {
     .catch(error => console.log(error));
 }
 
+function onSelectPage(page) {
+  loadAndRenderTrendingMovies(page);
+}
 createStartList();
