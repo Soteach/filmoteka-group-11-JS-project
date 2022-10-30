@@ -5,7 +5,7 @@ import Notiflix from 'notiflix';
 const WATCHED_KEY = 'Watched_KEY';
 const QUEUE_KEY = 'Queue_KEY';
 
-const akaLocalStorage = {
+export const akaLocalStorage = {
   watched: [],
   queue: [],
 };
@@ -13,11 +13,9 @@ const akaLocalStorage = {
 refs.btnWatched.addEventListener('click', goToWatched);
 refs.btnQueue.addEventListener('click', goToQueue);
 
-// refs.btnModalWatched.addEventListener('click', putWatchedIdtoLocalStorage);
 
-// refs.btnModalQueue.addEventListener('click', putQueueIdtoLocalStorage);
 
-function putWatchedIdtoLocalStorage(event) {
+export function putWatchedIdtoLocalStorage(event) {
   const filmId = event.target.dataset.id;
 
   if (akaLocalStorage.watched.includes(filmId)) {
@@ -36,7 +34,7 @@ function putWatchedIdtoLocalStorage(event) {
   localStorage.setItem(WATCHED_KEY, filmSTRING);
 }
 
-function putQueueIdtoLocalStorage(event) {
+export function putQueueIdtoLocalStorage(event) {
   const filmId = event.target.dataset.id;
 
   if (akaLocalStorage.queue.includes(filmId)) {
