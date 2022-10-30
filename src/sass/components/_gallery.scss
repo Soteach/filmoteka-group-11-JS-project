@@ -2,29 +2,49 @@ img {
   border-radius: 5px;
 }
 
+.container {
+  max-width: 320px;
+  margin: 0 auto;
+  @include tablet {
+    max-width: 768px;
+  }
+  @include desktop {
+    max-width: 1200px;
+  }
+}
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
+  gap: 16px;
 }
 
-.gallery__set {
+.gallery__set,
+.lib-gallery__set {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: 20px;
+
   @include tablet {
+    gap: 32px;
   }
+
   @include desktop {
     gap: 16px;
   }
 }
 
 .gallery__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+
   width: 100%;
   @include tablet {
-    width: calc((100% - 30px) / 2);
+    width: calc((100% - 32px) / 2);
   }
   @include desktop {
-    width: calc((100% - 60px) / 3);
+    width: calc((100% - 32px) / 3);
   }
 }
 
