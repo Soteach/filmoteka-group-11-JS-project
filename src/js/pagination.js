@@ -9,9 +9,6 @@ export function renderPager(currentPage, totalPages, onSelectPage) {
   window.onSelectPage = onSelectPage;
   let liTag = '';
   let activLi;
-  function sho(page) {
-    console.log(page);
-  }
   if (currentPage > 1) {
     liTag += `<li class="btn prev" onclick="element(${
       currentPage - 1
@@ -27,14 +24,12 @@ export function renderPager(currentPage, totalPages, onSelectPage) {
   const pages = getPages(currentPage, totalPages);
   for (let i = 0; i < pages.length; i++) {
     if (pages[i] === currentPage) {
-      // console.log(pages[i]);
       activLi = 'active';
       liTag += `<li class="numb ${activLi}">${pages[i]}</li>`;
     } else if (pages[i] === '...') {
       liTag += `<li class="dots"><span>...</span></li>`;
     } else {
       liTag += `<li class="numb" onclick="element(${pages[i]}, totalPages)">${pages[i]}</li>`;
-      // console.log(pages[i]);
     }
   }
   if (currentPage < totalPages) {
@@ -46,7 +41,6 @@ export function renderPager(currentPage, totalPages, onSelectPage) {
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 25.333l9.333-9.333-9.333-9.333"></path>
 </symbol></svg></li>`;
   }
-  // console.log(liTag);
   ulTag.innerHTML = liTag;
 }
 
@@ -93,5 +87,3 @@ function addPageRange(elements, start, end) {
 function addEllipsis(elements) {
   elements.push('...');
 }
-
-// element(1, totalPages);
