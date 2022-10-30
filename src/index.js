@@ -10,4 +10,3 @@ import './js/firebase/firebase-database';
 import './js/spinner';
 import './js/pagination';
 import './js/studentModal';
-import './js/MyLib';

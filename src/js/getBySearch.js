@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { renderPager } from './pagination';
+import Notiflix from 'notiflix';
+import { refs } from './refs';
 
 const refs = {
   searchForm: document.querySelector('.header-search__form'),
   searchInput: document.querySelector('.header-search-input'),
-
   container: document.querySelector('.gallery__set'),
+  notifyError: document.querySelector('.form-text'),
 };
 
 import { renderFilmsMarkup } from './renderMarkup';
@@ -19,41 +20,35 @@ async function fetchMovies(inputQuery, currentPage) {
   const filters = `?api_key=c3923fa38d2dd62131b577696cc2f23f&query=${inputQuery}&page=${currentPage}`;
 
   const response = await axios.get(`${mainUrl}${filters}`);
-  // console.log(response);
-
-  // console.log(response.json());
 
   const { data } = response;
 
-  return data;
+  return data.results;
 }
 
 let inputQuery = '';
+
 refs.searchForm.addEventListener('submit', onSearch);
 
 async function onSearch(event) {
   event.preventDefault();
+  refs.spinner.classList.remove('visually-hidden');
 
-  inputQuery = refs.searchInput.value;
+  inputQuery = event.target.elements.input.value;
 
-  // console.log(inputQuery);
-  // fetchMovies(inputQuery, 1);
   const data = await fetchMovies(inputQuery, 1);
+  if (data.length === 0) {
+    return (refs.notifyError.textContent =
+      'Search result not successful. Enter the correct movie name.');
+  }
 
-  renderUI(data);
-}
+  if (data) {
+    Notiflix.Notify.warning('No such films found. Try again!');
+    return;
+  }
 
-async function renderUI(data) {
-  renderFilmsMarkup(data.results);
-  renderPager(data.page, data.total_pages, async page => {
-    fetchMovies(inputQuery, page).then(data => {
-      renderUI(data);
-    });
-  });
-}
-
-async function renderMoviesList(pageNumber) {
-  currentPage = pageNumber;
+  renderFilmsMarkup(data);
+  refs.spinner.classList.add('visually-hidden');
 }
 
 // async function addPagination() {
