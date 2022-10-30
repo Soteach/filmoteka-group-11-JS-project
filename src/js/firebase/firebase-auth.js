@@ -1,4 +1,4 @@
-import { refs } from './refs';
+import { refs } from '../refs';
 import Notiflix from 'notiflix';
 import {
   showLoginError,
@@ -20,7 +20,6 @@ import {
   browserSessionPersistence,
 } from 'firebase/auth';
 import { onLogIn, onLogOut } from './firebaseFunc';
-import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDjaGoAoE49tic7CdNDFHBbf0MZHhhOqjw',
@@ -32,10 +31,9 @@ const firebaseConfig = {
   measurementId: 'G-GPZ3VGXDLX',
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-const database = getDatabase(app);
 // firebase.auth().useDeviceLanguage();
 
 connectAuthEmulator(auth, 'http://localhost:9099');
@@ -58,7 +56,7 @@ const loginEmailPassword = async () => {
   }
 };
 
-const createAccount = async () => {
+export const createAccount = async () => {
   const loginEmail = email.value;
   const loginPassword = password.value;
   try {
@@ -113,9 +111,11 @@ const monitorAuthState = async () => {
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
       console.log(user);
+      onLogIn();
       // ...
     } else {
       console.log('Logged out!');
+      onLogOut();
       // User is signed out
       // ...
     }

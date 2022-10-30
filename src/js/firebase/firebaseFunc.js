@@ -1,4 +1,4 @@
-import { refs } from './refs';
+import { refs } from '../refs';
 
 export function onLogIn() {
   refs.authModal.classList.add('visually-hidden');
