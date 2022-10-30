@@ -1,5 +1,8 @@
 img {
   border-radius: 5px;
+  &:hover {
+    border-radius: 0px;
+  }
 }
 
 .container {
@@ -40,6 +43,22 @@ img {
   align-content: space-between;
 
   width: 100%;
+  position: relative;
+
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 250ms var(--main-cubic);
+
+  &:hover {
+    box-shadow: 0px 0px 15px 5px rgba(153, 153, 152, 0.6);
+
+    & .films__img {
+      opacity: 0.8;
+    }
+  }
+
+  width: 100%;
   @include tablet {
     width: calc((100% - 32px) / 2);
   }
@@ -48,7 +67,7 @@ img {
   }
 }
 
-.film__poster {
+.films__poster {
   width: 280px;
   height: 398px;
   @include tablet {
@@ -61,22 +80,41 @@ img {
   }
 }
 
-.film__description {
+.films__description {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 5px 2px 2px;
 }
 
-.film__title {
+.films__title {
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
+  margin-bottom: 2px;
   color: $main-text-color;
   @include desktop {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.2;
   }
 }
 
-.film__info {
+.films__meta {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.33;
+  color: $accent-color;
+}
+
+.films__sep {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: var(--accent-color);
+}
+
+.films__info {
   font-size: 12px;
   line-height: 1.33;
   color: $accent-color;
@@ -87,7 +125,7 @@ img {
   }
 }
 
-.film__rating {
+.films__rating {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,7 +145,6 @@ img {
     height: 20px;
   }
 }
-
 
 .img {
   display: block;
