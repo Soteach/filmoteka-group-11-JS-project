@@ -34,14 +34,8 @@ async function onSearch(event) {
   event.preventDefault();
   refs.spinner.classList.remove('visually-hidden');
 
-  // const searchInput = event.target.elements.input.value;
-
-  // console.dir(searchInput);
-
   inputQuery = event.target.elements.input.value;
 
-  // console.log(inputQuery);
-  // fetchMovies(inputQuery, 1);
   const data = await fetchMovies(inputQuery, 1);
 
   if (data) {
