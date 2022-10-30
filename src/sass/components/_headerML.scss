@@ -1,4 +1,5 @@
 .library-header {
+    margin-bottom: 20px;
     background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -11,6 +12,7 @@ background-image: url(../images/bcg-mob.jpeg);
     }
 @include tablet{
     background-image: url(../images/bcg-tab.jpeg);
+    margin-bottom: 60px;
     @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
@@ -19,6 +21,7 @@ background-image: url(../images/bcg-mob.jpeg);
 }
 @include desktop {
     background-image: url(../images/bcg.jpeg);
+    
     @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
