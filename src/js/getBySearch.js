@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { renderPager } from './pagination';
 
 const refs = {
   searchForm: document.querySelector('.header-search__form'),
@@ -25,7 +24,9 @@ async function fetchMovies(inputQuery, currentPage) {
 
   const { data } = response;
 
-  return data;
+  // console.log(data.results);
+
+  return data.results;
 }
 
 let inputQuery = '';
@@ -40,16 +41,7 @@ async function onSearch(event) {
   // fetchMovies(inputQuery, 1);
   const data = await fetchMovies(inputQuery, 1);
 
-  renderUI(data);
-}
-
-async function renderUI(data) {
-  renderFilmsMarkup(data.results);
-  renderPager(data.page, data.total_pages, async page => {
-    fetchMovies(inputQuery, page).then(data => {
-      renderUI(data);
-    });
-  });
+  renderFilmsMarkup(data);
 }
 
 async function renderMoviesList(pageNumber) {
