@@ -3,11 +3,13 @@ const ulTag = document.querySelector('.pagination');
 //onSelectPage возвращает номер страницы которую нужно загрузить
 export function renderPager(currentPage, totalPages, onSelectPage) {
   window.onSelectPage = onSelectPage;
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
   let liTag = '';
   let activLi;
-  function sho(page) {
-    console.log(page);
-  }
+
   if (currentPage > 1) {
     liTag += `<li class="btn prev" onclick="onSelectPage(${currentPage - 1})">
   
@@ -84,5 +86,3 @@ function addPageRange(elements, start, end) {
 function addEllipsis(elements) {
   elements.push('...');
 }
-
-// element(1, totalPages);

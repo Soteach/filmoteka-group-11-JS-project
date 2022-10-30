@@ -41,5 +41,9 @@ function loadAndRenderTrendingMovies(page) {
 
 function onSelectPage(page) {
   loadAndRenderTrendingMovies(page);
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
 }
 createStartList();
