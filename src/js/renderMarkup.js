@@ -9,14 +9,14 @@ export function renderFilmsMarkup(films) {
         ? `https://image.tmdb.org/t/p/w400${poster_path}`
         : `https://image.tmdb.org/t/p/w400/yEvumAoCB9Z7o9dAzjxrjcwo2FQ.jpg`;
       return `<li class="gallery__item" data-id=${id || `No ID`}>
-                <div class="films__img">
+                <div class="films__poster">
                     <img src=https://image.tmdb.org/t/p/original${poster} alt="${
         title || name || 'No title'
       }" loading="lazy" id=${id}>
                 </div>
-                <div class="films__description" id=${id}>
-                  <p class="films__title" id=${id}>${title || name || 'No title'}</p>
-                  <div class="films__meta" id=${id}>
+                <div class="film__description" id=${id}>
+                  <p class="film__title" id=${id}>${title || name || 'No title'}</p>
+                  <div class="film__info" id=${id}>
                     <span class="films__genres" id=${id}>${
         getGenres(genre_ids, 3) || 'No genres info'
       }</span>
