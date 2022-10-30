@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Notiflix from 'notiflix';
 
 const refs = {
   searchForm: document.querySelector('.header-search__form'),
