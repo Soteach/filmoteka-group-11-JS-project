@@ -35,6 +35,10 @@ img {
 }
 
 .gallery__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+
   width: 100%;
   @include tablet {
     width: calc((100% - 32px) / 2);

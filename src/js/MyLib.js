@@ -2,6 +2,8 @@ import { refs } from './refs';
 import axios from 'axios';
 import { getGenres } from './renderMarkup';
 
+import { spinnerPlay, spinnerStop } from './spinner';
+
 const WATCHED_KEY = 'Watched_KEY';
 const QUEUE_KEY = 'Watched_KEY';
 
@@ -20,6 +22,14 @@ refs.btnQueue.addEventListener('click', goToQueue);
 
 function putWatchedIdtoLocalStorage(event) {
   const filmId = event.target.dataset.id;
+  
+
+    if (akaLocalStorage.watched.includes(filmId)) {
+
+        akaLocalStorage.watched.
+    }
+
+
   akaLocalStorage.watched.push(filmId);
 
   const filmSTRING = JSON.stringify(akaLocalStorage.watched);
@@ -37,16 +47,29 @@ function putQueueIdtoLocalStorage(event) {
 }
 
 async function goToWatched() {
+  refs.spinner.classList.remove('visually-hidden');
+
   const idFilmsArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
 
   const qweqwe = await Promise.all(idFilmsArray.map(fetchMovieById));
 
-  console.log(qweqwe);
+  //   console.log(qweqwe);
 
   renderFilmsMarkup(qweqwe);
+  refs.spinner.classList.add('visually-hidden');
 }
 
-function goToQueue(film) {}
+async function goToQueue() {
+  spinnerPlay();
+  const idFilmsArray = JSON.parse(localStorage.getItem(QUEUE_KEY));
+
+  const qweqwe = await Promise.all(idFilmsArray.map(fetchMovieById));
+
+  //   console.log(qweqwe);
+
+  renderFilmsMarkup(qweqwe);
+  spinnerStop();
+}
 
 // console.dir(refs.libgallerySet);
 
