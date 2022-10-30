@@ -14,9 +14,9 @@ refs.btnWatched.addEventListener('click', goToWatched);
 
 refs.btnQueue.addEventListener('click', goToQueue);
 
-refs.btnModalWatched.addEventListener('click', putWatchedIdtoLocalStorage);
+// refs.btnModalWatched.addEventListener('click', putWatchedIdtoLocalStorage);
 
-refs.btnModalQueue.addEventListener('click', putQueueIdtoLocalStorage);
+// refs.btnModalQueue.addEventListener('click', putQueueIdtoLocalStorage);
 
 function putWatchedIdtoLocalStorage(event) {
   const filmId = event.target.dataset.id;
@@ -39,7 +39,7 @@ function putQueueIdtoLocalStorage(event) {
 async function goToWatched() {
   const idFilmsArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
 
-  const qweqwe = await idFilmsArray.map(fetchMovieById);
+  const qweqwe = await Promise.all(idFilmsArray.map(fetchMovieById));
 
   console.log(qweqwe);
 
