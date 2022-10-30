@@ -43,11 +43,11 @@ async function onSearch(event) {
   renderFilmsMarkup(data);
 }
 
-// async function renderUI(data) {
-//   renderFilmsMarkup(data.results);
-//   renderPager(data.page, data.total_pages, async page => {
-//     fetchMovies(inputQuery, page).then(data => {
-//       renderUI(data);
-//     });
-//   });
-// }
+async function renderUI(data) {
+  renderFilmsMarkup(data.results);
+  renderPager(data.page, data.total_pages, async page => {
+    fetchMovies(inputQuery, page).then(data => {
+      renderUI(data);
+    });
+  });
+}
