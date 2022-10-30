@@ -37,7 +37,6 @@
 .header__navigation {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 50px;
 }
 
@@ -46,8 +45,8 @@
   list-style-type: none;
   font-size: 12px;
   text-transform: uppercase;
-
-  color: #ffffff;
+  margin-left: auto;
+  color: $secondary-text-color;
 }
 
 .header__navigation-item {
@@ -62,7 +61,7 @@
   position: relative;
 
   &::after {
-    border: 1px solid rgba(#ff001b, 0);
+    border: 1px solid rgba($accent-second-color, 0);
     bottom: -2px;
     content: ' ';
     display: block;
@@ -73,7 +72,7 @@
   }
 
   &:hover::after {
-    border-color: #ff001b;
+    border-color: $accent-second-color;
     width: 100%;
     transition: width 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -81,7 +80,7 @@
 
 .header__navigation-item-link.current {
   padding-bottom: 1px;
-  border-bottom: 2px solid #ff001b;
+  border-bottom: 2px solid $accent-second-color;
 
   &:hover {
     border-bottom: none;
@@ -97,7 +96,7 @@
 .logo-header {
   display: inline-flex;
   align-items: center;
-  color: #ffffff;
+  color: $secondary-text-color;
   margin: 0;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
@@ -106,7 +105,7 @@
   }
   &:hover .logo-header__icon {
     transform: rotateX(3.142rad);
-    stroke: #ff001b;
+    stroke: $accent-second-color;
   }
 }
 
@@ -139,7 +138,7 @@
   }
   &:hover .header-search-input,
   &:focus .header-search-input {
-    border-bottom: dashed red;
+    border-bottom: dashed $accent-second-color;
   }
 }
 
@@ -162,7 +161,7 @@
   background-color: inherit;
   border-bottom: 0.5px solid #fff;
   font-size: 14px;
-  color: #ffffff;
+  color: $secondary-text-color;
   transition: border-bottom 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -197,8 +196,9 @@
   font-size: 14px;
   line-height: 16px;
   text-align: left;
-  color: #ff001b;
+  color: $accent-second-color;
   @media screen and (min-width: 768px) {
     text-align: center;
   }
 }
+

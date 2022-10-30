@@ -1,9 +1,11 @@
+
 .footer {
     height: 100px;
     background-color: #f7f7f7;
     padding-top: 29px;
     padding-bottom: 29px;
     text-align: center;
+    color: #545454;
 
     @include tablet {
         height: 79px;
@@ -28,7 +30,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 1.14;
-    color: #545454;
+ 
 }
 
 .footer__text:last-child {
@@ -41,10 +43,12 @@
 }
 
 .team-modal-btn {
-    color: #545454;
+    color: $accent-color;
     text-decoration: underline;
     background-color: transparent;
     border: none;
     padding: 0;
     cursor: pointer;
 }
+
+
