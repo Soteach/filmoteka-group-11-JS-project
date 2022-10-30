@@ -10,12 +10,11 @@ const akaLocalStorage = {
   queue: [],
 };
 
-refs.btnWatched.addEventListener('click', goToWatched);
-refs.btnQueue.addEventListener('click', goToQueue);
+const btnWatched = document.querySelector('.js-btn-watched');
+const btnQueue = document.querySelector('.js-btn-queue');
 
-// refs.btnModalWatched.addEventListener('click', putWatchedIdtoLocalStorage);
-
-// refs.btnModalQueue.addEventListener('click', putQueueIdtoLocalStorage);
+btnWatched.addEventListener('click', goToWatched);
+btnQueue.addEventListener('click', goToQueue);
 
 function putWatchedIdtoLocalStorage(event) {
   const filmId = event.target.dataset.id;
@@ -58,8 +57,8 @@ function putQueueIdtoLocalStorage(event) {
 async function goToWatched() {
   refs.spinner.classList.remove('visually-hidden');
 
-  refs.btnWatched.classList.add('filter__btn--active');
-  refs.btnQueue.classList.removed('filter__btn--active');
+  btnWatched.classList.add('filter__btn--active');
+  btnQueue.classList.remove('filter__btn--active');
 
   try {
     const idFilmsArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
@@ -71,15 +70,15 @@ async function goToWatched() {
   } catch (error) {
     Notiflix.Notify.failure('Your Watched gallery is empty!');
     refs.spinner.classList.add('visually-hidden');
-
     return;
   }
 }
 
 async function goToQueue() {
   refs.spinner.classList.remove('visually-hidden');
-  refs.btnQueue.classList.add('filter__btn--active');
-  refs.btnWatched.classList.removed('filter__btn--active');
+  btnQueue.classList.add('filter__btn--active');
+
+  btnWatched.classList.remove('filter__btn--active');
 
   try {
     const idFilmsArray = JSON.parse(localStorage.getItem(QUEUE_KEY));
