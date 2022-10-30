@@ -58,6 +58,9 @@ function putQueueIdtoLocalStorage(event) {
 async function goToWatched() {
   refs.spinner.classList.remove('visually-hidden');
 
+  refs.btnWatched.classList.add('filter__btn--active');
+  refs.btnQueue.classList.removed('filter__btn--active');
+
   try {
     const idFilmsArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
     const qweqwe = await Promise.all(idFilmsArray.map(fetchMovieById));
@@ -75,6 +78,8 @@ async function goToWatched() {
 
 async function goToQueue() {
   refs.spinner.classList.remove('visually-hidden');
+  refs.btnQueue.classList.add('filter__btn--active');
+  refs.btnWatched.classList.removed('filter__btn--active');
 
   try {
     const idFilmsArray = JSON.parse(localStorage.getItem(QUEUE_KEY));
