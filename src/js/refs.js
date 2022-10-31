@@ -23,6 +23,7 @@ export const refs = {
   libgallerySet: document.querySelector('.lib-gallery__set'),
 
   modalRef: document.querySelector('#myModal'),
+  modalBdrop: document.querySelector('.box'),
 
   upBtn: document.querySelector('[data-up]'),
   bodyEl: document.querySelector('body'),

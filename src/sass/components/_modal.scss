@@ -336,6 +336,7 @@
     top: 50%;
     width: 806;
     height: 558;
+
     overflow: hidden;
     padding: 10px;
   // }
@@ -364,3 +365,6 @@
       display: inline-flex;
       width: 30px;
     }
+
+    overflow: auto;
+  }
