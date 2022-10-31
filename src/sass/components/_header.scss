@@ -47,6 +47,7 @@
   text-transform: uppercase;
   margin-left: auto;
   color: $secondary-text-color;
+  align-items: center;
 }
 
 .header__navigation-item {
@@ -55,6 +56,11 @@
   &:hover {
     transform: scale(1.2);
   }
+}
+
+.sign-in__btn,
+.sign-out__btn {
+  fill: $secondary-text-color;
 }
 
 .header__navigation-item-link {
