@@ -20,5 +20,6 @@ function onEsc(evt) {
 function clickOnAnyPlace(evt) {
   if (evt.target.matches('.close') || !evt.target.closest('.stud__modal')) {
     refs.studModal.classList.add('visually-hidden');
+    refs.bodyEl.classList.remove('no_scroll');
   }
 }

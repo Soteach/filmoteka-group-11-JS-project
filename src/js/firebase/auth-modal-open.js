@@ -28,5 +28,6 @@ function clickOnAnyPlace(evt) {
     !evt.target.closest('.auth-modal')
   ) {
     refs.authModal.classList.add('visually-hidden');
+    refs.bodyEl.classList.remove('no_scroll');
   }
 }
