@@ -22,7 +22,10 @@ function onEsc(evt) {
 }
 
 function clickOnAnyPlace(evt) {
-  if (evt.target.matches('.form__close') || !evt.target.closest('.modal')) {
+  if (
+    evt.target.matches('.form__close') ||
+    !evt.target.closest('.auth-modal')
+  ) {
     refs.authModal.classList.add('visually-hidden');
   }
 }
