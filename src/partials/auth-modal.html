@@ -1,0 +1,62 @@
+<div class="backdrop is-hidden visually-hidden js-backdrop" data-modal>
+  <div class="auth-modal">
+    <form name="form" autocomplete="on" id="auth-form">
+      <div role="group" aria-labelledby="form__header" class="form__group">
+        <button type="button" class="form__close close" data-modal-close>
+          <svg class="close__btn" width="18" height="18">
+            <use href="./images/sign-in-icons.svg#icon-cross"></use>
+          </svg>
+        </button>
+        <strong id="form__header" class="form__header">
+          Sign in / Sign up
+        </strong>
+        <div class="field">
+          <label for="email" class="field___label">
+            <span class="field__text">E-mail</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            class="field__input"
+            id="email"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="password" class="field___label">
+            <span class="field__text">Password</span>
+          </label>
+          <input
+            type="password"
+            name="password"
+            class="field__input"
+            id="password"
+            required
+          />
+        </div>
+        <label class="checkbox">
+          <input
+            type="checkbox"
+            name="agree"
+            value="agree"
+            class="checkbox__input"
+            required
+          />
+          <span class="checkbox__icon"></span>
+          <p class="checkbox__agreement agreement">
+            I agree to provide my data
+          </p>
+        </label>
+        <div class="buttons">
+          <button type="submit" class="signin__btn">Sign in</button>
+          <button type="submit" class="signup__btn">Sign up</button>
+        </div>
+        <button type="submit" class="google__btn">
+          <svg class="close__btn" width="18" height="18">
+            <use href="./images/sign-in-icons.svg#icon-google"></use>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,180 @@
+img {
+  border-radius: 5px;
+
+  &:hover {
+    border-radius: 0px;
+  }
+}
+
+.container {
+  max-width: 320px;
+  margin: 0 auto;
+
+  @include tablet {
+    max-width: 768px;
+  }
+
+  @include desktop {
+    max-width: 1200px;
+  }
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.gallery__set,
+.lib-gallery__set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @include tablet {
+    gap: 32px;
+  }
+
+  @include desktop {
+    gap: 16px;
+  }
+}
+
+.gallery__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+
+  width: 100%;
+  position: relative;
+
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 250ms var(--main-cubic);
+
+  &:hover {
+    box-shadow: 0px 0px 15px 5px rgba(153, 153, 152, 0.6);
+
+    & .films__img {
+      opacity: 0.8;
+    }
+  }
+
+  width: 100%;
+
+  @include tablet {
+    width: calc((100% - 32px) / 2);
+  }
+
+  @include desktop {
+    width: calc((100% - 32px) / 3);
+  }
+}
+
+.films__img {
+  width: 280px;
+  height: 398px;
+
+  @include tablet {
+    width: 336px;
+    height: 455px;
+  }
+
+  @include desktop {
+    width: 394px;
+    height: 574px;
+  }
+}
+
+.film__description {
+  margin-top: 8px;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 5px 2px 2px;
+}
+
+.film__title {
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  color: $main-text-color;
+
+  @include desktop {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+}
+
+.films__meta {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.33;
+  color: $accent-color;
+}
+
+.films__sep {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: var(--accent-color);
+}
+
+.film__info {
+  font-size: 12px;
+  line-height: 1.33;
+  color: $accent-color;
+
+  @include desktop {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.films__rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: 8px;
+  width: 36px;
+  height: 16px;
+  font-size: 12px;
+  line-height: 1.17;
+  color: $background-main-color;
+  background: $accent-color;
+  border-radius: 5px;
+
+  @include desktop {
+    width: 40px;
+    height: 20px;
+  }
+}
+
+.img {
+  display: block;
+  max-width: 100%;
+  height: 398px;
+  cursor: pointer;
+
+  @include tablet {
+    height: 455px;
+  }
+
+  @include desktop {
+    height: 574px;
+  }
+}
+
+.item__text {
+  margin-top: 8px;
+}
+
+.item__wrap {
+  display: flex;
+}
