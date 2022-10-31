@@ -99,6 +99,7 @@ function renderFilmsMarkup(films) {
       ({
         poster_path,
         genres,
+        genre_ids,
         title,
         original_title,
         release_date,

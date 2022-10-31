@@ -11,3 +11,5 @@ import './js/spinner';
 import './js/pagination';
 import './js/modalIneractions';
 import './js/studentModal';
+import './js/MyLib';
+import './js/upBtn';

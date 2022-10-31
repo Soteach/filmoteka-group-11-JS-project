@@ -24,7 +24,8 @@
     "firebase": "^9.13.0",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.5",
-    "simplelightbox": "^2.10.4"
+    "simplelightbox": "^2.10.4",
+    "throttle": "^1.0.3"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
