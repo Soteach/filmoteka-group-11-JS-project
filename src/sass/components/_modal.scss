@@ -336,6 +336,7 @@
     top: 50%;
     width: 806;
     height: 558;
+    transform: translate(-50%,-50%);
 
     overflow: hidden;
     padding: 10px;
@@ -366,5 +367,4 @@
       width: 30px;
     }
 
-    overflow: auto;
-  }
+ 
