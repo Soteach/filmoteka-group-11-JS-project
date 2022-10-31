@@ -85,7 +85,10 @@ function cardMarkup(data) {
         </ul>
       </div>
     </div>
-    <div class="modal-close-btn">Close</div>
+    <div class="modal-close-btn"><svg class="close-svg" width="100%" height="100%" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M8 8L22 22" stroke="black" stroke-width="2"></path>
+				<path d="M8 22L22 8" stroke="black" stroke-width="2"></path>
+			</svg></div>
   </div>`;
 }
 
