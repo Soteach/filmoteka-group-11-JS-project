@@ -58,7 +58,7 @@ function renderFilmsMarkup(films) {
     .map(({ poster_path, genres, title, original_title, release_date, first_air_date, id }) => {
       const poster = poster_path
         ? `https://image.tmdb.org/t/p/w400${poster_path}`
-        : `https://image.tmdb.org/t/p/w400/yEvumAoCB9Z7o9dAzjxrjcwo2FQ.jpg`;
+        : `https://image.tmdb.org/t/p/w400/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg`;
       return `<li class="gallery__item" data-id=${id || `No ID`}>
                 <div class="films__img">
                     <img src=https://image.tmdb.org/t/p/original${poster} alt="${
