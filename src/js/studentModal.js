@@ -13,6 +13,7 @@ function onOpenModal() {
 function onEsc(evt) {
   if (evt.key === 'Escape') {
     refs.studModal.classList.add('visually-hidden');
+    refs.bodyEl.classList.remove('no_scroll');
   }
 }
 
