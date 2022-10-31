@@ -1,23 +1,12 @@
 const ulTag = document.querySelector('.pagination');
 
-let page, total_pages, onPageSelect;
-
-window.addEventListener('resize', ent => {
-  renderPager(page, total_pages, onPageSelect);
-});
-
 //onSelectPage возвращает номер страницы которую нужно загрузить
 export function renderPager(currentPage, totalPages, onSelectPage) {
-  if (!totalPages) {
-    ulTag.innerHTML = '';
-    return;
-  }
-  page = currentPage;
-  total_pages = totalPages;
-  onPageSelect = onSelectPage;
-
   window.onSelectPage = onSelectPage;
-
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
   let liTag = '';
   let activLi;
   if (currentPage > 1) {
@@ -30,7 +19,7 @@ export function renderPager(currentPage, totalPages, onSelectPage) {
 </symbol></svg>
               </li>`;
   }
-  const pages = getPages(currentPage, totalPages, window.innerWidth <= 425);
+  const pages = getPages(currentPage, totalPages);
   for (let i = 0; i < pages.length; i++) {
     if (pages[i] === currentPage) {
       activLi = 'active';
@@ -57,7 +46,7 @@ export function renderPager(currentPage, totalPages, onSelectPage) {
   ulTag.innerHTML = liTag;
 }
 
-function getPages(currentPage, totalPages, isMobile) {
+function getPages(currentPage, totalPages) {
   let elements = [];
   const pageLimit = 5;
   const threshold = Math.ceil(pageLimit / 2);
@@ -69,31 +58,23 @@ function getPages(currentPage, totalPages, isMobile) {
 
   if (currentPage <= threshold) {
     addPageRange(elements, 1, pageLimit);
-    if (!isMobile) {
-      addEllipsis(elements);
-      addPageRange(elements, totalPages, totalPages);
-    }
+    addEllipsis(elements);
+    addPageRange(elements, totalPages, totalPages);
     return elements;
   }
 
   if (currentPage > threshold && currentPage <= totalPages - threshold) {
-    if (!isMobile) {
-      addPageRange(elements, 1, 1);
-      addEllipsis(elements);
-    }
+    addPageRange(elements, 1, 1);
+    addEllipsis(elements);
     addPageRange(elements, currentPage - 2, currentPage + 2);
-    if (!isMobile) {
-      addEllipsis(elements);
-      addPageRange(elements, totalPages, totalPages);
-    }
+    addEllipsis(elements);
+    addPageRange(elements, totalPages, totalPages);
     return elements;
   }
 
   if (currentPage + 1 > totalPages - threshold) {
-    if (!isMobile) {
-      addPageRange(elements, 1, 1);
-      addEllipsis(elements);
-    }
+    addPageRange(elements, 1, 1);
+    addEllipsis(elements);
     addPageRange(elements, totalPages - (threshold + 1), totalPages);
     return elements;
   }
