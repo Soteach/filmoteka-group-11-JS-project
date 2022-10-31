@@ -47,7 +47,7 @@ async function fetchMovieById(filmId) {
         arr.push(name[1])
     }
     
-
+    const arrToString = arr.join(', ')
       
     return `<div class="modal-card" data-action="${id}">
     <div class="cardItem__image">
@@ -70,7 +70,7 @@ async function fetchMovieById(filmId) {
         <p class="cardItem__genre cardItem_text">
           Genre
         </p>
-        <p class="cardItem__genreList">${arr}
+        <p class="cardItem__genreList">${arrToString}
           <span class="cardItem__genre_data"></span>
         </p>
   
@@ -92,7 +92,10 @@ async function fetchMovieById(filmId) {
         </ul>
       </div>
     </div>
-    <div class="modal-close-btn">Close</div>
+    <div class="modal-close-btn"><svg class="close-svg" width="100%" height="100%" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M8 8L22 22" stroke="black" stroke-width="2"></path>
+				<path d="M8 22L22 8" stroke="black" stroke-width="2"></path>
+			</svg></div>
   </div>`;
   }
 
