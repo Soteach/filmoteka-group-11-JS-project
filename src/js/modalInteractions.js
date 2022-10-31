@@ -4,10 +4,13 @@ import axios from 'axios';
 const WATCHED_KEY = 'Watched_KEY';
 const QUEUE_KEY = 'Queue_KEY';
 
+let btnModalWatched = document.querySelector('.js-WatchedButton');
+let btnModalQueue = document.querySelector('.js-QueueButton');
+
 const API_KEY = 'c3923fa38d2dd62131b577696cc2f23f';
 const mainUrl = `https://api.themoviedb.org/3`;
 
-refs.gallery.addEventListener('click', pleaseWork);
+refs.gallery.addEventListener('click', modalAppear);
 
 async function fetchMovieById(filmId) {
   const filters = `/movie/${filmId}?api_key=${API_KEY}`;
@@ -42,6 +45,8 @@ function cardMarkup(data) {
     arr.push(name[1]);
   }
 
+  const arrToString = arr.join(', ')
+
   return `<div class="modal-card" data-action="${id}">
     <div class="cardItem__image">
       <img class="image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}"/>
@@ -63,7 +68,7 @@ function cardMarkup(data) {
         <p class="cardItem__genre cardItem_text">
           Genre
         </p>
-        <p class="cardItem__genreList">${arr}
+        <p class="cardItem__genreList">${arrToString}
           <span class="cardItem__genre_data"></span>
         </p>
   
@@ -85,11 +90,14 @@ function cardMarkup(data) {
         </ul>
       </div>
     </div>
-    <div class="modal-close-btn">Close</div>
+    <div class="modal-close-btn"><svg class="close-svg" width="100%" height="100%" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M8 8L22 22" stroke="black" stroke-width="2"></path>
+				<path d="M8 22L22 8" stroke="black" stroke-width="2"></path>
+			</svg></div>
   </div>`;
 }
 
-async function pleaseWork(event) {
+async function modalAppear(event) {
   event.preventDefault();
   if (event.target.nodeName !== 'IMG') {
     return;
@@ -97,19 +105,25 @@ async function pleaseWork(event) {
   const response = await fetchMovieById(event.target.id);
   const markup = cardMarkup(response);
   refs.modalRef.innerHTML = markup;
-  toggleModal();
-  addListeners();
+  refs.modalBdrop.classList.remove('visually-hidden');
+  document.body.style.overflow = 'hidden';
+  
+  
+ 
+  
+  addListeners(event);
+  
 }
 
-function toggleModal() {
-  refs.modalRef.classList.toggle('visually-hidden');
-  document.body.classList.toggle('stop-scroll');
-}
+function addListeners(event) {   
+  btnModalWatched = document.querySelector('.js-WatchedButton');
+   btnModalQueue = document.querySelector('.js-QueueButton');
+   const closeButton = document.querySelector('.modal-close-btn');
 
-function addListeners() {
-  const btnModalWatched = document.querySelector('.js-WatchedButton');
-  const btnModalQueue = document.querySelector('.js-QueueButton');
 
+  closeButton.addEventListener('click', modalClose);
+  refs.modalBdrop.addEventListener('click', modalCloseOnBdClick)
+  window.addEventListener('keydown', modalCloseOnEscape )
   btnModalWatched.addEventListener('click', putWatchedIdtoLocalStorage);
   btnModalQueue.addEventListener('click', putQueueIdtoLocalStorage);
 }
@@ -125,14 +139,18 @@ function putWatchedIdtoLocalStorage(event) {
 
       const filmSTRING = JSON.stringify(currentWatchedArr);
       localStorage.setItem(WATCHED_KEY, filmSTRING);
-
+      btnModalWatched = document.querySelector('.js-WatchedButton');
+      btnModalWatched.classList.remove('modal__btn--active')
+      
       return;
     }
 
     currentWatchedArr.push(filmId);
-
+    
     const filmSTRING = JSON.stringify(currentWatchedArr);
     localStorage.setItem(WATCHED_KEY, filmSTRING);
+    btnModalWatched = document.querySelector('.js-WatchedButton')
+    btnModalWatched.classList.add('modal__btn--active')
   } catch (error) {
     console.error(error);
   }
@@ -149,7 +167,8 @@ function putQueueIdtoLocalStorage(event) {
 
       const filmSTRING = JSON.stringify(currentQueueArr);
       localStorage.setItem(QUEUE_KEY, filmSTRING);
-
+      btnModalQueue = document.querySelector('.js-QueueButton');
+      btnModalQueue.classList.remove('modal__btn--active')
       return;
     }
 
@@ -157,16 +176,32 @@ function putQueueIdtoLocalStorage(event) {
 
     const filmSTRING = JSON.stringify(currentQueueArr);
     localStorage.setItem(QUEUE_KEY, filmSTRING);
+    btnModalQueue = document.querySelector('.js-QueueButton')
+    btnModalQueue.classList.add('modal__btn--active')
   } catch (error) {
     console.error(error);
   }
 }
 
-// function closeModal(){
-//   refs.btnModalWatched.removeEventListener('click', putWatchedIdtoLocalStorage);
-// refs.btnModalQueue.removeEventListener('click', putQueueIdtoLocalStorage);
-//   if(refs.modalRef.classList.contains('visually-hidden')){
-//     return
-//   }
 
-// }
+////////////modal close functional
+
+function modalClose(){
+  refs.modalBdrop.classList.add('visually-hidden')
+  window.removeEventListener('keydown', modalCloseOnEscape);
+  document.body.style.overflow = '';
+}
+
+
+function modalCloseOnBdClick(event){
+  if (event.target.classList.contains("box")){
+    modalClose()
+  }
+}
+
+function modalCloseOnEscape(event) {
+  if (event.code === 'Escape') {
+    modalClose();
+  }
+}
+

@@ -18,6 +18,7 @@ function authFormHandler(evt) {
 function onEsc(evt) {
   if (evt.key === 'Escape') {
     refs.authModal.classList.add('visually-hidden');
+    refs.bodyEl.classList.remove('no_scroll');
   }
 }
 
@@ -27,5 +28,6 @@ function clickOnAnyPlace(evt) {
     !evt.target.closest('.auth-modal')
   ) {
     refs.authModal.classList.add('visually-hidden');
+    refs.bodyEl.classList.remove('no_scroll');
   }
 }

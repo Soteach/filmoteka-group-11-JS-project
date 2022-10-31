@@ -1,20 +1,25 @@
-import { refs } from './refs';
-import throttle from 'lodash.throttle';
+const goTopBtn = document.querySelector('.back_to_top');
 
-refs.upBtn.addEventListener('click', backToTheTop);
-// window.addEventListener('scroll', throttle(onScroll(refs.upBtn), 250));
+window.addEventListener('scroll', trackScroll);
+goTopBtn.addEventListener('click', backToTop);
 
-// function onScroll() {
-//   if (pageYOffset < document.documentElement.clientHeight) {
-//     refs.upBtn.classList.add('visuallyhidden');
-//   } else {
-//     refs.upBtn.classList.remove('visuallyhidden');
-//   }
-// }
+function trackScroll() {
+  const scrolled = window.pageYOffset;
+  const coords = document.documentElement.clientHeight;
 
-function backToTheTop() {
-  console.log('click');
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  if (scrolled > coords) {
+    goTopBtn.classList.add('back_to_top-show');
+  }
+  if (scrolled < coords) {
+    goTopBtn.classList.remove('back_to_top-show');
+  }
 }
 
-console.log(refs.upBtn);
+function backToTop() {
+  if (window.pageYOffset > 0) {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+}
