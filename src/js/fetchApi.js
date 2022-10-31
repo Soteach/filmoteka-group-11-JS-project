@@ -1,7 +1,7 @@
 const API_KEY = 'c3923fa38d2dd62131b577696cc2f23f';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
-export default class TrendingMovies {
+export class TrendingMovies {
   constructor() {
     this.page = 1;
     this.query = '';

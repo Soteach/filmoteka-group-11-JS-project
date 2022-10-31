@@ -1,4 +1,4 @@
-import TrendingMovies from './fetchAPI';
+import { TrendingMovies } from './fetchAPI';
 import { renderFilmsMarkup } from './renderMarkup';
 import { renderPager } from './pagination';
 
