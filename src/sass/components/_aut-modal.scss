@@ -65,6 +65,7 @@ body.no_scroll {
   align-items: center;
   justify-content: center;
   z-index: 1;
+  @include transition($tp: fill);
   &:hover,
   &:focus {
     fill: $accent-color;

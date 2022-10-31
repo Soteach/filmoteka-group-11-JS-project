@@ -1,22 +1,112 @@
+.stud__modal {
+  position: absolute;
+  background-color: #8f1a2cee;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s ease-in-out;
+  transition: opacity 300ms, visibility 300ms;
+  opacity: 1;
+  padding-top: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  padding-left: 40px;
+  @media screen and (max-width: 767px) {
+    padding: 30px;
+  }
+}
+.js-backdrop-stud {
+  opacity: 1;
+  transition: opacity 0.5s visibility 0.3s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  visibility: visible;
+  // transition: opacity 300ms, visibility 300ms;
+}
+
+.js-backdrop-stud.visually-hidden .stud__modal {
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s visibility 0.3s ease-in-out;
+  // transition: opacity 300ms, visibility 300ms;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.team__header {
+  display: inline-block;
+  text-align: center;
+  color: $background-footer-color;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
 .students__list {
   display: flex;
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    justify-content: center;
+  }
 }
 .students__item {
+  color: $background-footer-color;
   margin-top: 7px;
+  margin-bottom: 7px;
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 13px;
+  }
 }
 
 .students__wrap {
   margin-right: 14px;
+  padding-left: 5px;
+  background-color: rgba(240, 255, 255, 0.295);
+  border-radius: 4px;
+  &:last-child {
+    margin-right: 0;
+  }
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    width: 70%;
+  }
+}
+
+.students__item {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.students__item_main {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 13px;
+  }
 }
 
 .students__item_main::before {
-  content: '';
-  display: inline-block;
-  margin-right: 10px;
-  background-image: url('../images/crown-svgrepo-com.svg');
-  color: white;
-  width: 24px;
-  height: 24px;
+  @media screen and (min-width: 1199px) {
+    content: '';
+    display: inline-block;
+    margin-right: 7px;
+    background-image: url('../images/crown.svg');
+    opacity: 0.8;
+    width: 19px;
+    height: 19px;
+  }
 }
 
 body.no_scroll {
@@ -25,11 +115,160 @@ body.no_scroll {
   height: 100%;
 }
 
-// .students__item::before {
-//   content: '';
-//   display: inline-block;
-//   margin-right: 10px;
-//   background-image: url('');
-//   width: 24px;
-//   height: 24px;
-// }
+.mail__link {
+  @include transition($tp: fill);
+  &:hover,
+  &:focus {
+    fill: $accent-color;
+  }
+}
+.socials__icon {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.stud__text {
+  margin-top: 10px;
+  color: $background-footer-color;
+  text-align: center;
+}
+
+//stars animation
+
+.stars {
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    // background: url(./bg0.jpg);
+    background-position-x: center;
+    background-size: cover;
+    // animation: animateBg 50s linear infinite; - move the picture
+  }
+  @media screen and (min-width: 768px) {
+    @keyframes animateBg {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+    .star {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
+        0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 1);
+      animation: animate 3s linear infinite;
+    }
+    .star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 250px;
+      height: 1px;
+      background: linear-gradient(90deg, #fff, transparent);
+    }
+    @keyframes animate {
+      0% {
+        transform: rotate(315deg) translateX(0);
+        opacity: 1;
+      }
+      70% {
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(315deg) translateX(-1500px);
+        opacity: 0;
+      }
+    }
+    .star:nth-child(1) {
+      top: 0;
+      right: 0;
+      left: initial;
+      animation-delay: 0;
+      animation-duration: 1s;
+    }
+
+    .star:nth-child(2) {
+      top: 0;
+      right: 80px;
+      left: initial;
+      animation-delay: 0.2s;
+      animation-duration: 3s;
+    }
+
+    .star:nth-child(3) {
+      top: 80px;
+      right: 0px;
+      left: initial;
+      animation-delay: 0.4s;
+      animation-duration: 2s;
+    }
+
+    .star:nth-child(4) {
+      top: 0;
+      right: 180px;
+      left: initial;
+      animation-delay: 0.6s;
+      animation-duration: 1.5s;
+    }
+
+    .star:nth-child(5) {
+      top: 0;
+      right: 400px;
+      left: initial;
+      animation-delay: 0.8s;
+      animation-duration: 2.5s;
+    }
+
+    .star:nth-child(6) {
+      top: 0;
+      right: 600px;
+      left: initial;
+      animation-delay: 1s;
+      animation-duration: 3s;
+    }
+    .star:nth-child(7) {
+      top: 300px;
+      right: 0px;
+      left: initial;
+      animation-delay: 1s;
+      animation-duration: 1.75s;
+    }
+
+    .star:nth-child(8) {
+      top: 0px;
+      right: 700px;
+      left: initial;
+      animation-delay: 1.4s;
+      animation-duration: 1.25s;
+    }
+
+    .star:nth-child(9) {
+      top: 0px;
+      right: 1000px;
+      left: initial;
+      animation-delay: 0.75s;
+      animation-duration: 2.25s;
+    }
+
+    .star:nth-child(10) {
+      top: 0px;
+      right: 1000px;
+      left: initial;
+      animation-delay: 2.75s;
+      animation-duration: 2.25s;
+    }
+  }
+}
