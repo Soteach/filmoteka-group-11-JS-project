@@ -7,7 +7,7 @@ document.addEventListener('keydown', onEsc);
 
 function onOpenModal() {
   refs.studModal.classList.toggle('visually-hidden');
-  refs.htmlEl.classList.toggle('no_scroll');
+  refs.bodyEl.classList.toggle('no_scroll');
 }
 
 function onEsc(evt) {
