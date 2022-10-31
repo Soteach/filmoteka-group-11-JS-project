@@ -48,6 +48,10 @@ async function renderUI(data) {
   renderPager(data.page, data.total_pages, async page => {
     fetchMovies(inputQuery, page).then(data => {
       renderUI(data);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     });
   });
 }
