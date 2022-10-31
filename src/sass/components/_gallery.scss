@@ -1,5 +1,6 @@
 img {
   border-radius: 5px;
+
   &:hover {
     border-radius: 0px;
   }
@@ -8,9 +9,11 @@ img {
 .container {
   max-width: 320px;
   margin: 0 auto;
+
   @include tablet {
     max-width: 768px;
   }
+
   @include desktop {
     max-width: 1200px;
   }
@@ -59,21 +62,25 @@ img {
   }
 
   width: 100%;
+
   @include tablet {
     width: calc((100% - 32px) / 2);
   }
+
   @include desktop {
     width: calc((100% - 32px) / 3);
   }
 }
 
-.films__poster {
+.films__img {
   width: 280px;
   height: 398px;
+
   @include tablet {
     width: 336px;
     height: 455px;
   }
+
   @include desktop {
     width: 394px;
     height: 574px;
@@ -89,12 +96,13 @@ img {
   padding: 5px 2px 2px;
 }
 
-.films__title {
+.film__title {
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
   margin-bottom: 2px;
   color: $main-text-color;
+
   @include desktop {
     font-size: 18px;
     line-height: 1.2;
@@ -116,7 +124,7 @@ img {
   color: var(--accent-color);
 }
 
-.films__info {
+.film__info {
   font-size: 12px;
   line-height: 1.33;
   color: $accent-color;
