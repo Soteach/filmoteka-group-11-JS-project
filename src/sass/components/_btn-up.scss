@@ -25,11 +25,11 @@
     border-radius: 50%;
   }
 
-  @media screen and (min-width: 320px) {
+
+  @include mobile {
     right: 2%;
     bottom: 20%;
   }
-
 
 
 }
