@@ -1,55 +1,48 @@
-import { refs } from "./refs";
-import axios from "axios";
-import { putQueueIdtoLocalStorage, putWatchedIdtoLocalStorage, akaLocalStorage } from "./MyLib";
+import { refs } from './refs';
+import axios from 'axios';
 
 const WATCHED_KEY = 'Watched_KEY';
 const QUEUE_KEY = 'Queue_KEY';
 
-const API_KEY = 'c3923fa38d2dd62131b577696cc2f23f'
+const API_KEY = 'c3923fa38d2dd62131b577696cc2f23f';
 const mainUrl = `https://api.themoviedb.org/3`;
 
 refs.gallery.addEventListener('click', pleaseWork);
 
 async function fetchMovieById(filmId) {
-    const filters = `/movie/${filmId}?api_key=${API_KEY}`;
-    try {
-        const response = await axios.get(`${mainUrl}${filters}`);
-        // console.log(response.data);
-    return response.data
-    } catch (error) {
-        console.log(error);
-    }
-    
+  const filters = `/movie/${filmId}?api_key=${API_KEY}`;
+  try {
+    const response = await axios.get(`${mainUrl}${filters}`);
+    // console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function cardMarkup(data) {
+  const {
+    poster_path,
+    genres,
+    title,
+    name,
+    release_date,
+    first_air_date,
+    overview,
+    id,
+    vote_average,
+    vote_count,
+    popularity,
+    original_title,
+  } = data;
+
+  arr = [];
+  for (let index = 0; index < genres.length; index++) {
+    const name = Object.values(genres[index]);
+    arr.push(name[1]);
   }
 
-  
-
-  function cardMarkup(data){
-    const {
-        poster_path,
-        genres,
-        title,
-        name,
-        release_date,
-        first_air_date,
-        overview,
-        id,
-        vote_average,
-        vote_count,
-        popularity,
-        original_title,
-      } = data
-
-     
-      arr = []
-      for (let index = 0; index < genres.length; index++) {
-        const name = Object.values(genres[index]);
-        arr.push(name[1])
-    }
-    
-    const arrToString = arr.join(', ')
-      
-    return `<div class="modal-card" data-action="${id}">
+  return `<div class="modal-card" data-action="${id}">
     <div class="cardItem__image">
       <img class="image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}"/>
     </div>
@@ -70,7 +63,7 @@ async function fetchMovieById(filmId) {
         <p class="cardItem__genre cardItem_text">
           Genre
         </p>
-        <p class="cardItem__genreList">${arrToString}
+        <p class="cardItem__genreList">${arr}
           <span class="cardItem__genre_data"></span>
         </p>
   
@@ -97,38 +90,80 @@ async function fetchMovieById(filmId) {
 				<path d="M8 22L22 8" stroke="black" stroke-width="2"></path>
 			</svg></div>
   </div>`;
+}
+
+async function pleaseWork(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== 'IMG') {
+    return;
   }
+  const response = await fetchMovieById(event.target.id);
+  const markup = cardMarkup(response);
+  refs.modalRef.innerHTML = markup;
+  toggleModal();
+  addListeners();
+}
 
-  async function pleaseWork(event){
-    event.preventDefault()
-    if (event.target.nodeName !== "IMG") {
-      return
-    }
-    const response = await fetchMovieById(event.target.id)
-    const markup = cardMarkup(response)
-    refs.modalRef.innerHTML = markup
-    toggleModal()
-    addListeners()
-      
-
-} 
-
-function toggleModal(){
-  refs.modalRef.classList.toggle('visually-hidden')
+function toggleModal() {
+  refs.modalRef.classList.toggle('visually-hidden');
   document.body.classList.toggle('stop-scroll');
 }
 
-function addListeners(){
-  
-
+function addListeners() {
   const btnModalWatched = document.querySelector('.js-WatchedButton');
   const btnModalQueue = document.querySelector('.js-QueueButton');
- 
+
   btnModalWatched.addEventListener('click', putWatchedIdtoLocalStorage);
   btnModalQueue.addEventListener('click', putQueueIdtoLocalStorage);
-  }
-    
+}
 
+function putWatchedIdtoLocalStorage(event) {
+  const filmId = event.target.dataset.id;
+
+  try {
+    const currentWatchedArr = JSON.parse(localStorage.getItem(WATCHED_KEY));
+
+    if (currentWatchedArr.includes(filmId)) {
+      currentWatchedArr.splice(currentWatchedArr.indexOf(filmId), 1);
+
+      const filmSTRING = JSON.stringify(currentWatchedArr);
+      localStorage.setItem(WATCHED_KEY, filmSTRING);
+
+      return;
+    }
+
+    currentWatchedArr.push(filmId);
+
+    const filmSTRING = JSON.stringify(currentWatchedArr);
+    localStorage.setItem(WATCHED_KEY, filmSTRING);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function putQueueIdtoLocalStorage(event) {
+  const filmId = event.target.dataset.id;
+
+  try {
+    const currentQueueArr = JSON.parse(localStorage.getItem(QUEUE_KEY));
+
+    if (currentQueueArr.includes(filmId)) {
+      currentQueueArr.splice(currentQueueArr.indexOf(filmId), 1);
+
+      const filmSTRING = JSON.stringify(currentQueueArr);
+      localStorage.setItem(QUEUE_KEY, filmSTRING);
+
+      return;
+    }
+
+    currentQueueArr.push(filmId);
+
+    const filmSTRING = JSON.stringify(currentQueueArr);
+    localStorage.setItem(QUEUE_KEY, filmSTRING);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 // function closeModal(){
 //   refs.btnModalWatched.removeEventListener('click', putWatchedIdtoLocalStorage);
@@ -137,11 +172,4 @@ function addListeners(){
 //     return
 //   }
 
-  
 // }
-
-
-
-
-
-  

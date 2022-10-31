@@ -8,7 +8,7 @@ refs.authBackdrop.addEventListener('click', clickOnAnyPlace);
 
 function onSignInModal() {
   refs.authModal.classList.toggle('visually-hidden');
-  refs.htmlEl.classList.toggle('no_scroll');
+  refs.bodyEl.classList.toggle('no_scroll');
 }
 
 function authFormHandler(evt) {
@@ -22,7 +22,10 @@ function onEsc(evt) {
 }
 
 function clickOnAnyPlace(evt) {
-  if (evt.target.matches('.form__close') || !evt.target.closest('.modal')) {
+  if (
+    evt.target.matches('.form__close') ||
+    !evt.target.closest('.auth-modal')
+  ) {
     refs.authModal.classList.add('visually-hidden');
   }
 }

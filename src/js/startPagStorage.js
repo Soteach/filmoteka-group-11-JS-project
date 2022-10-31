@@ -1,4 +1,4 @@
-import TrendingMovies from './fetchAPI';
+import { TrendingMovies } from './fetchApi';
 import { renderFilmsMarkup } from './renderMarkup';
 import { renderPager } from './pagination';
 
@@ -19,7 +19,6 @@ let options = {
 };
 
 function createStartList() {
-  console.log(this.options);
   trendingMovies.fetchGenres().then(({ genres }) => {
     const arr = [...genres];
     localStorage.setItem('genres', JSON.stringify(arr));
@@ -27,18 +26,6 @@ function createStartList() {
 
   loadAndRenderTrendingMovies(1);
 }
-
-// trendingMovies
-//   .fetchTrendingMovies()
-//   .then(data => {
-//     renderFilmsMarkup(data);
-
-//     // options.totalItems = trendingMovies.getResults();
-
-//     // setToLocacStorageAnswer(data);
-//   })
-
-//   .catch(error => console.log(error));
 
 function loadAndRenderTrendingMovies(page) {
   trendingMovies.page = page;
