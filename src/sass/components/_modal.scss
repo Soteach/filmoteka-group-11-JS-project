@@ -24,7 +24,6 @@
 @media screen and (max-width: 767px) {
   .modal-card {
     position: relative;
-
     background-color: $background-main-color;
     width: 320px;
     margin-top: 350px;
@@ -59,7 +58,6 @@
   font-size: 20px;
   font-weight: 500;
   line-height: 30px;
-  letter-spacing: 50;
   color: $main-text-color;
   margin-bottom: 18px;
   text-transform: uppercase;
@@ -125,6 +123,19 @@
   //   margin-left: 46px;
   // }
 }
+//////////////////////////////////////////////
+
+
+.modal {
+    // display: none;
+  position: fixed;
+  //   z-index: 1;
+  left: 50%;
+  top: 50%;
+  width: 806;
+  overflow: hidden;
+  background-color: #fff;
+}
 
 .cardItem__genre {
   display: inline-block;
@@ -178,6 +189,92 @@
   border-radius: 5px;
   width: 134px;
 }
+
+.storage__label {
+      display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      
+        width: 130px;
+        padding: 12px 0;
+      
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.33;
+        text-transform: uppercase;
+      
+        color: $accent-color;
+        background-color: transparent;
+        border: 1px solid $background-main-color;
+        border-radius: 5px;
+      
+        @include tablet {
+          width: 152px;
+          //padding: 12px 0;
+        }
+      
+        @include desktop {
+          width: 148px;
+          //padding: 12px 0;
+        }
+      
+        &.filter__btn--active {
+          background: $accent-color;
+          box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+        }
+}
+.storage {
+  display: flex;
+  justify-content: center;
+}
+
+.storage__btn {
+  display: block;
+
+  padding-top: 14px;
+  padding-bottom: 12px;
+
+  min-width: 130px;
+
+  // @media screen and (min-width: $tablet) {
+  //   min-width: 136px;
+  // }
+
+    text-align: center;
+  
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    text-transform: uppercase;
+  
+    // color: #fff;
+  
+    cursor: pointer;
+  
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+.storage__input {
+  display: none;
+}
+
+.storage__input~.storage__btn {
+  background-color: #fff;
+  border: 1px solid #000;
+  color: #000;
+}
+
+.storage__input:checked~.storage__btn {
+  background-color: $accent-color;
+  border: 1px solid $accent-color;
+  color: #fff;
+}
+
 
 // .cardItem__button:hover {
 //   background-color: rgb(255, 107, 8);
@@ -257,3 +354,14 @@
     width: 290px;
   }
 }
+
+.modal {
+  //   // display: none;
+    position: fixed;
+  //   z-index: 1;
+    left: 50%;
+    top: 50%;
+    width: 806;
+    height: 558;
+    overflow: auto;
+  }

@@ -5,7 +5,7 @@ import Notiflix from 'notiflix';
 const WATCHED_KEY = 'Watched_KEY';
 const QUEUE_KEY = 'Queue_KEY';
 
-const akaLocalStorage = {
+export const akaLocalStorage = {
   watched: [],
   queue: [],
 };
@@ -16,7 +16,7 @@ const btnQueue = document.querySelector('.js-btn-queue');
 btnWatched.addEventListener('click', goToWatched);
 btnQueue.addEventListener('click', goToQueue);
 
-function putWatchedIdtoLocalStorage(event) {
+export function putWatchedIdtoLocalStorage(event) {
   const filmId = event.target.dataset.id;
 
   if (akaLocalStorage.watched.includes(filmId)) {
@@ -35,7 +35,7 @@ function putWatchedIdtoLocalStorage(event) {
   localStorage.setItem(WATCHED_KEY, filmSTRING);
 }
 
-function putQueueIdtoLocalStorage(event) {
+export function putQueueIdtoLocalStorage(event) {
   const filmId = event.target.dataset.id;
 
   if (akaLocalStorage.queue.includes(filmId)) {
@@ -76,8 +76,8 @@ async function goToWatched() {
 
 async function goToQueue() {
   refs.spinner.classList.remove('visually-hidden');
-  btnQueue.classList.add('filter__btn--active');
 
+  btnQueue.classList.add('filter__btn--active');
   btnWatched.classList.remove('filter__btn--active');
 
   try {
@@ -98,31 +98,46 @@ function renderFilmsMarkup(films) {
   refs.libgallerySet.innerHTML = '';
 
   films
-    .map(({ poster_path, genres, title, original_title, release_date, first_air_date, id }) => {
-      const poster = poster_path
-        ? `https://image.tmdb.org/t/p/w400${poster_path}`
-        : `https://image.tmdb.org/t/p/w400/yEvumAoCB9Z7o9dAzjxrjcwo2FQ.jpg`;
-      return `<li class="gallery__item" data-id=${id || `No ID`}>
+    .map(
+      ({
+        poster_path,
+        genres,
+        genre_ids,
+        title,
+        original_title,
+        release_date,
+        first_air_date,
+        id,
+      }) => {
+        const poster = poster_path
+          ? `https://image.tmdb.org/t/p/w400${poster_path}`
+          : `https://image.tmdb.org/t/p/w400/yEvumAoCB9Z7o9dAzjxrjcwo2FQ.jpg`;
+        return `<li class="gallery__item" data-id=${id || `No ID`}>
                 <div class="films__img">
                     <img src=https://image.tmdb.org/t/p/original${poster} alt="${
-        title || original_title || 'No title'
-      }" loading="lazy" id=${id}>
+          title || original_title || 'No title'
+        }" loading="lazy" id=${id}>
                 </div>
                 <div class="films__description" id=${id}>
-                  <p class="films__title" id=${id}>${title || original_title || 'No title'}</p>
+                  <p class="films__title" id=${id}>${
+          title || original_title || 'No title'
+        }</p>
                   <div class="films__meta" id=${id}>
                     <span class="films__genres" id=${id}>${
-        getGenres(genres) || 'No genres info'
-      }</span>
+          getGenres(genres) || 'No genres info'
+        }</span>
                     
                     <span class="films__sep" id=${id}>|</span>
                     <span class="films__data" id=${id}>${
-        new Date(release_date).getFullYear() || new Date(first_air_date).getFullYear() || 'No info'
-      }</span>
+          new Date(release_date).getFullYear() ||
+          new Date(first_air_date).getFullYear() ||
+          'No info'
+        }</span>
                   </div>
                 </div>
             </li>`;
-    })
+      }
+    )
     .forEach(c => refs.libgallerySet.insertAdjacentHTML('beforeend', c));
 }
 

@@ -24,6 +24,11 @@ export const refs = {
 
   btnWatched: document.querySelector('.js-btn-watched'),
   btnQueue: document.querySelector('.js-btn-queue'),
+
+  modalRef: document.querySelector('#myModal'),
   btnModalWatched: document.querySelector('.js-WatchedButton'),
   btnModalQueue: document.querySelector('.js-QueueButton'),
+  upBtn: document.querySelector('[data-up]'),
+  bodyEl: document.querySelector('body'),
+  htmlEl: document.querySelector('html'),
 };

@@ -19,7 +19,12 @@
   height: 24px;
 }
 
-//я рядочок2
+body.no_scroll {
+  overflow-y: hidden;
+  margin: 0;
+  height: 100%;
+}
+
 // .students__item::before {
 //   content: '';
 //   display: inline-block;

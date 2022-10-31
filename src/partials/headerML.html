@@ -12,22 +12,38 @@
           <a class="header__navigation-item-link" href="./index.html">HOME</a>
         </li>
         <li class="header__navigation-item">
-          <a class="header__navigation-item-link current" href="./myLibrary.html">MY LIBRARY</a>
+          <a
+            class="header__navigation-item-link current"
+            href="./myLibrary.html"
+            >MY LIBRARY</a
+          >
         </li>
         <li class="header__navigation-item sign-in_js">
-          <a class="header__navigation-item-link">Sign in / Sign up</a>
+          <a class="header__navigation-item-link"
+            ><svg class="sign-in__btn" width="18" height="18">
+              <use href="./images/sign-in-icons.svg#icon-unlocked"></use></svg
+          ></a>
         </li>
         <li class="header__navigation-item log-out_js visually-hidden">
-          <a class="header__navigation-item-link">Log out</a>
+          <a class="header__navigation-item-link"
+            ><svg class="sign-out__btn" width="18" height="18">
+              <use href="./images/sign-in-icons.svg#icon-lock"></use></svg
+          ></a>
         </li>
       </ul>
       <button type="button" class="dark-theme-btn js-dark-theme-btn"></button>
     </nav>
     <div class="filter">
-      <button type="button" class="js-btn-watched filter__btn filter__btn--active" data-id="55555">
+      <button
+        type="button"
+        class="js-btn-watched filter__btn filter__btn--active"
+        data-id="55555"
+      >
         watched
       </button>
-      <button type="button" class="js-btn-queue filter__btn" data-id="55555">queue</button>
+      <button type="button" class="js-btn-queue filter__btn" data-id="55555">
+        queue
+      </button>
     </div>
     <div class="message-conteiner">
       <p class="message" id="message"></p>

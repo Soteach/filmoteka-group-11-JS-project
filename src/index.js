@@ -9,4 +9,7 @@ import './js/firebase/firebaseNotifications';
 import './js/firebase/firebase-database';
 import './js/spinner';
 import './js/pagination';
+import './js/modalIneractions';
 import './js/studentModal';
+import './js/MyLib';
+import './js/upBtn';
