@@ -2,7 +2,6 @@ import { refs } from './refs';
 import axios from 'axios';
 import Notiflix from 'notiflix';
 
-
 const WATCHED_KEY = 'Watched_KEY';
 const QUEUE_KEY = 'Queue_KEY';
 
@@ -27,7 +26,8 @@ async function goToWatched() {
   } catch (error) {
     Notiflix.Notify.failure('Your Watched gallery is empty!');
     refs.spinner.classList.add('visually-hidden');
-    refs.libgallerySet.innerHTML = '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
+    refs.libgallerySet.innerHTML =
+      '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
 
     return;
   }
@@ -48,7 +48,8 @@ async function goToQueue() {
   } catch (error) {
     Notiflix.Notify.failure('Your Queue gallery is empty!');
     refs.spinner.classList.add('visually-hidden');
-    refs.libgallerySet.innerHTML = '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
+    refs.libgallerySet.innerHTML =
+      '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
 
     return;
   }
@@ -86,19 +87,17 @@ function renderFilmsMarkup(films) {
     .forEach(c => refs.libgallerySet.insertAdjacentHTML('beforeend', c));
 }
 
-
 const API_KEY = 'c3923fa38d2dd62131b577696cc2f23f';
 const mainUrl = 'https://api.themoviedb.org/3';
 
 async function fetchMovieById(filmId) {
-  if(filmId === ''){
-    return
+  if (filmId === '') {
+    return;
   }
   const filters = `/movie/${filmId}?api_key=${API_KEY}`;
   try {
     const response = await axios.get(`${mainUrl}${filters}`);
 
-    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -125,7 +124,4 @@ function getGenres(genres) {
   return arr.join(', ');
 }
 
-// if(localStorage.getItem(WATCHED_KEY)!==[] || localStorage.getItem(WATCHED_KEY)!==null ){
-  goToWatched();
-// }
-
+goToWatched();

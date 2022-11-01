@@ -2,7 +2,6 @@ import { refs } from './refs';
 import axios from 'axios';
 import Notiflix from 'notiflix';
 
-
 const WATCHED_KEY = 'Watched_KEY';
 const QUEUE_KEY = 'Queue_KEY';
 
@@ -18,7 +17,7 @@ async function fetchMovieById(filmId) {
   const filters = `/movie/${filmId}?api_key=${API_KEY}`;
   try {
     const response = await axios.get(`${mainUrl}${filters}`);
-    // console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.log(error);
@@ -30,9 +29,6 @@ function cardMarkup(data) {
     poster_path,
     genres,
     title,
-    name,
-    release_date,
-    first_air_date,
     overview,
     id,
     vote_average,
@@ -41,13 +37,13 @@ function cardMarkup(data) {
     original_title,
   } = data;
 
- const arr = [];
+  const arr = [];
   for (let index = 0; index < genres.length; index++) {
     const name = Object.values(genres[index]);
     arr.push(name[1]);
   }
 
-  const arrToString = arr.join(', ')
+  const arrToString = arr.join(', ');
 
   return `<div class="modal-card" data-action="${id}">
     <div class="cardItem__image">
@@ -109,23 +105,18 @@ async function modalAppear(event) {
   refs.modalRef.innerHTML = markup;
   refs.modalBdrop.classList.remove('visually-hidden');
   document.body.style.overflow = 'hidden';
-  
-  
- 
-  
+
   addListeners(event);
-  
 }
 
-function addListeners(event) {   
+function addListeners(event) {
   btnModalWatched = document.querySelector('.js-WatchedButton');
-   btnModalQueue = document.querySelector('.js-QueueButton');
-   const closeButton = document.querySelector('.modal-close-btn');
-
+  btnModalQueue = document.querySelector('.js-QueueButton');
+  const closeButton = document.querySelector('.modal-close-btn');
 
   closeButton.addEventListener('click', modalClose);
-  refs.modalBdrop.addEventListener('click', modalCloseOnBdClick)
-  window.addEventListener('keydown', modalCloseOnEscape )
+  refs.modalBdrop.addEventListener('click', modalCloseOnBdClick);
+  window.addEventListener('keydown', modalCloseOnEscape);
   btnModalWatched.addEventListener('click', putWatchedIdtoLocalStorage);
   btnModalQueue.addEventListener('click', putQueueIdtoLocalStorage);
 }
@@ -137,97 +128,86 @@ function putWatchedIdtoLocalStorage(event) {
     const checkIfNull = localStorage.getItem(WATCHED_KEY);
     const currentWatchedArr = checkIfNull === null ? [] : JSON.parse(checkIfNull);
 
-if(currentWatchedArr){
-    if (currentWatchedArr.includes(filmId)) {
-      currentWatchedArr.splice(currentWatchedArr.indexOf(filmId), 1);
-      if(currentWatchedArr.length === 0){
-        localStorage.removeItem(WATCHED_KEY)
-        return
+    if (currentWatchedArr) {
+      if (currentWatchedArr.includes(filmId)) {
+        currentWatchedArr.splice(currentWatchedArr.indexOf(filmId), 1);
+        if (currentWatchedArr.length === 0) {
+          localStorage.removeItem(WATCHED_KEY);
+          return;
+        }
+        const filmSTRING = JSON.stringify(currentWatchedArr);
+        localStorage.setItem(WATCHED_KEY, filmSTRING);
+        btnModalWatched = document.querySelector('.js-WatchedButton');
+        btnModalWatched.classList.remove('modal__btn--active');
+
+        return;
       }
+
+      currentWatchedArr.push(filmId);
+
       const filmSTRING = JSON.stringify(currentWatchedArr);
       localStorage.setItem(WATCHED_KEY, filmSTRING);
       btnModalWatched = document.querySelector('.js-WatchedButton');
-      btnModalWatched.classList.remove('modal__btn--active')
-      
-      return;
+      btnModalWatched.classList.add('modal__btn--active');
     }
-
-    currentWatchedArr.push(filmId);
-    
-    const filmSTRING = JSON.stringify(currentWatchedArr);
-    localStorage.setItem(WATCHED_KEY, filmSTRING);
-    btnModalWatched = document.querySelector('.js-WatchedButton')
-    btnModalWatched.classList.add('modal__btn--active')
-  }} catch (error) {
+  } catch (error) {
     console.error(error);
   }
 }
 
 function putQueueIdtoLocalStorage(event) {
   const filmId = event.target.dataset.id;
- 
- 
+
   try {
     const checkIfNull = localStorage.getItem(QUEUE_KEY);
-let currentQueueArr = checkIfNull === null ? [] : JSON.parse(checkIfNull);
-if(currentQueueArr){
-    if (currentQueueArr.includes(filmId)) {
-      currentQueueArr.splice(currentQueueArr.indexOf(filmId), 1);
-      if(currentQueueArr.length === 0){
-        localStorage.removeItem(QUEUE_KEY)
-        return
+    let currentQueueArr = checkIfNull === null ? [] : JSON.parse(checkIfNull);
+    if (currentQueueArr) {
+      if (currentQueueArr.includes(filmId)) {
+        currentQueueArr.splice(currentQueueArr.indexOf(filmId), 1);
+        if (currentQueueArr.length === 0) {
+          localStorage.removeItem(QUEUE_KEY);
+          return;
+        }
+        const filmSTRING = JSON.stringify(currentQueueArr);
+        localStorage.setItem(QUEUE_KEY, filmSTRING);
+        btnModalQueue = document.querySelector('.js-QueueButton');
+        btnModalQueue.classList.remove('modal__btn--active');
+        return;
       }
+
+      currentQueueArr.push(filmId);
+
       const filmSTRING = JSON.stringify(currentQueueArr);
       localStorage.setItem(QUEUE_KEY, filmSTRING);
       btnModalQueue = document.querySelector('.js-QueueButton');
-      btnModalQueue.classList.remove('modal__btn--active')
-      return;
+      btnModalQueue.classList.add('modal__btn--active');
     }
-
-    currentQueueArr.push(filmId);
-
-    const filmSTRING = JSON.stringify(currentQueueArr);
-    localStorage.setItem(QUEUE_KEY, filmSTRING);
-    btnModalQueue = document.querySelector('.js-QueueButton')
-    btnModalQueue.classList.add('modal__btn--active')
-  }
-  // else {currentQueueArr.push(filmId);}
-
-} catch (error) {
+  } catch (error) {
     console.error(error);
   }
 }
 
-
 ////////////modal close functional
 
-function modalClose(){
-
-  refs.modalBdrop.classList.add('visually-hidden')
+function modalClose() {
+  refs.modalBdrop.classList.add('visually-hidden');
 
   window.removeEventListener('keydown', modalCloseOnEscape);
   document.body.style.overflow = '';
   const btnWatched = document.querySelector('.js-btn-watched');
 
   try {
-     if(btnWatched.classList.contains('filter__btn--active')){
-    goToWatched()
-  } 
-  else {
-    goToQueue()
-  }
-
-  } catch (error) {
-    console.log('ne smotri v console');
-  }
- 
+    if (btnWatched.classList.contains('filter__btn--active')) {
+      goToWatched();
+    } else {
+      goToQueue();
+    }
+  } catch (error) {}
 }
 
-
-
-function modalCloseOnBdClick(event){
-  if (event.target.classList.contains("box")){
-    modalClose()
+function modalCloseOnBdClick(event) {
+  if (event.target.classList.contains('box')) {
+    modalClose();
   }
 }
 
@@ -241,7 +221,7 @@ async function goToWatched() {
   refs.spinner.classList.remove('visually-hidden');
 
   const btnWatched = document.querySelector('.js-btn-watched');
-const btnQueue = document.querySelector('.js-btn-queue');
+  const btnQueue = document.querySelector('.js-btn-queue');
 
   btnWatched.classList.add('filter__btn--active');
   btnQueue.classList.remove('filter__btn--active');
@@ -250,11 +230,12 @@ const btnQueue = document.querySelector('.js-btn-queue');
     const idFilmsArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
     const qweqwe = await Promise.all(idFilmsArray.map(fetchMovieById));
     renderFilmsMarkup(qweqwe);
-  
+
     refs.spinner.classList.add('visually-hidden');
   } catch (error) {
     Notiflix.Notify.failure('Your Watched gallery is empty!');
-    refs.libgallerySet.innerHTML = '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
+    refs.libgallerySet.innerHTML =
+      '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
     refs.spinner.classList.add('visually-hidden');
 
     return;
@@ -265,8 +246,8 @@ async function goToQueue() {
   refs.spinner.classList.remove('visually-hidden');
 
   const btnWatched = document.querySelector('.js-btn-watched');
-const btnQueue = document.querySelector('.js-btn-queue');
-  
+  const btnQueue = document.querySelector('.js-btn-queue');
+
   btnQueue.classList.add('filter__btn--active');
   btnWatched.classList.remove('filter__btn--active');
 
@@ -279,7 +260,8 @@ const btnQueue = document.querySelector('.js-btn-queue');
   } catch (error) {
     Notiflix.Notify.failure('Your Queue gallery is empty!');
     refs.spinner.classList.add('visually-hidden');
-    refs.libgallerySet.innerHTML = '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
+    refs.libgallerySet.innerHTML =
+      '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
     return;
   }
 }
