@@ -144,7 +144,7 @@
   }
   &:hover .header-search-input,
   &:focus .header-search-input {
-    border-bottom: dashed $accent-second-color;
+    border-bottom: 0.5px dashed $accent-second-color;
   }
 }
 
