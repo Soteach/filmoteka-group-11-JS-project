@@ -41,7 +41,7 @@ function cardMarkup(data) {
     original_title,
   } = data;
 
-  arr = [];
+ const arr = [];
   for (let index = 0; index < genres.length; index++) {
     const name = Object.values(genres[index]);
     arr.push(name[1]);
