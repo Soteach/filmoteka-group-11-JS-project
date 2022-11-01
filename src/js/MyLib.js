@@ -61,7 +61,7 @@ function renderFilmsMarkup(films) {
         : `https://image.tmdb.org/t/p/w400/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg`;
       return `<li class="gallery__item" data-id=${id || `No ID`}>
                 <div class="films__img">
-                    <img src=https://image.tmdb.org/t/p/original${poster} alt="${
+                    <img class="poster" src=https://image.tmdb.org/t/p/original${poster} alt="${
         title || original_title || 'No title'
       }" loading="lazy" id=${id}>
                 </div>
