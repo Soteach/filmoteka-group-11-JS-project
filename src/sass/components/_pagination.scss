@@ -1,9 +1,9 @@
 .pagination {
-  padding-bottom: 40px;
+  padding: 40px 0;
   @include tablet {
-    padding-bottom: 40px;
+    padding: 60px 0;
   }
   @include desktop {
-    padding-bottom: 60px;
+    padding: 60px 0;
   }
 }

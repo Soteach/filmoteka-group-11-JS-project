@@ -1,5 +1,7 @@
 .library-header {
-    margin-bottom: 20px;
+    padding-bottom: 60px;
+    padding-top: 40px;
+    //margin-bottom: 20px;
     background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -12,7 +14,7 @@ background-image: url(../images/bcg-mob.jpeg);
     }
 @include tablet{
     background-image: url(../images/bcg-tab.jpeg);
-    margin-bottom: 60px;
+    //margin-bottom: 60px;
     @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
@@ -36,8 +38,6 @@ background-image: url(../images/bcg-mob.jpeg);
     margin-right: auto;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 42px;
-    padding-bottom: 62px;
     // @include mobile {
     //     max-width: 480px;
     // }
@@ -48,8 +48,8 @@ background-image: url(../images/bcg-mob.jpeg);
     }
     @include desktop{
         max-width: 1280px;
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: 32px;
+        padding-right: 32px;
 }
 }
 
@@ -76,7 +76,7 @@ background-image: url(../images/bcg-mob.jpeg);
     width: 130px;
     padding: 12px 0;
 
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 500;
         font-size: 12px;
