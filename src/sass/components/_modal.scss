@@ -152,6 +152,7 @@
   width: 806;
   overflow: hidden;
   background-color: #fff;
+
 }
 
 .cardItem__genre {
@@ -263,14 +264,14 @@
     // width: 720px;
     margin-top: 0px;
     display: flex;
-    padding-top: 30;
+    padding-top: 20;
   }
 
   .image {
     display: block;
     width: auto;
     height: auto;
-    // padding-top: 10px;
+    padding-top: 10px;
     border-radius: 5px;
   }
 
@@ -337,7 +338,6 @@
 
     overflow: hidden;
     padding: 10px;
-    transform: translate(-50%, -50%);
 
 
   @media screen and (min-width: 320px) {
@@ -352,7 +352,7 @@
       display: flex;
       justify-content: center;
       width: 806;
-      height: 552;
+      height: 510;
       overflow: hidden;
     }
   }
