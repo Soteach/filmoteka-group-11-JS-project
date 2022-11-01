@@ -36,7 +36,7 @@ export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 // firebase.auth().useDeviceLanguage();
 
-connectAuthEmulator(auth, 'http://localhost:9099');
+// connectAuthEmulator(auth, 'http://localhost:9099');
 
 const loginEmailPassword = async () => {
   const loginEmail = email.value;
