@@ -47,7 +47,7 @@ const loginEmailPassword = async () => {
       loginEmail,
       loginPassword
     );
-    console.log(userCredential.user);
+    // console.log(userCredential.user);
     showLoginSuccess();
     onLogIn();
   } catch (error) {
@@ -65,8 +65,8 @@ export const createAccount = async () => {
       loginEmail,
       loginPassword
     );
-    showCreateLoginSuccess();
-    console.log(userCredential.user);
+    // showCreateLoginSuccess();
+    // console.log(userCredential.user);
     Notiflix.Loading.standard({
       clickToClose: true,
       svgSize: '30px',
@@ -110,11 +110,11 @@ const monitorAuthState = async () => {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
-      console.log(user);
+      // console.log(user);
       onLogIn();
       // ...
     } else {
-      console.log('Logged out!');
+      // console.log('Logged out!');
       onLogOut();
       // User is signed out
       // ...
