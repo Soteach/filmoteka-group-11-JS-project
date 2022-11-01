@@ -7,6 +7,10 @@ body {
   padding: 0;
   scroll-behavior: smooth;
   background-color: $background-main-color;
+  html {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+  }
 }
 
 .stop-scroll {

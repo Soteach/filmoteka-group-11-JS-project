@@ -5,4 +5,4 @@ refs.nightModeBtn.addEventListener('click', () => {
     refs.nightModeBtn.classList.toggle('dark-theme-edited')
     refs.footerRef.classList.toggle('dark-footer')
 
-}) 
+})                      
