@@ -345,7 +345,10 @@
     justify-content: center;
     width: 280;
     height: 940;
-        overflow: auto;
+    overflow-y: auto;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -70%);
   }
 
     @media screen and (min-width: 768px) {
