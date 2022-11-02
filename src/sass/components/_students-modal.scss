@@ -109,12 +109,6 @@
   }
 }
 
-body.no_scroll {
-  overflow-y: hidden;
-  margin: 0;
-  height: 100%;
-}
-
 .mail__link {
   @include transition($tp: fill);
   &:hover,
