@@ -1,4 +1,4 @@
-const ulTag = document.querySelector('.pagination');
+const ulTag = document.querySelector('.pagination-list');
 
 //onSelectPage возвращает номер страницы которую нужно загрузить
 let page, total_pages, onPageSelect;

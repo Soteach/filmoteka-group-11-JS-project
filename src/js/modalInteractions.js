@@ -5,13 +5,15 @@ import Notiflix from 'notiflix';
 const WATCHED_KEY = 'Watched_KEY';
 const QUEUE_KEY = 'Queue_KEY';
 
-let btnModalWatched = document.querySelector('.js-WatchedButton');
-let btnModalQueue = document.querySelector('.js-QueueButton');
-
 const API_KEY = 'c3923fa38d2dd62131b577696cc2f23f';
 const mainUrl = `https://api.themoviedb.org/3`;
 
 refs.gallery.addEventListener('click', modalAppear);
+
+const nothingPlaceHolder = `<li style="display: flex;align-items: center; justify-content: center;
+ width: 100%; height: 592px; background: linear-gradient( 45deg, rgba(108, 9, 9, 0.8267682072829132) 0%,
+ rgba(62, 65, 87, 0.83) 50%, rgba(108, 9, 9, 0.83) 100% ); " > <p style="font-size: 48px;
+ font-weight: 700">Nothing added to list</p></li>`;
 
 async function fetchMovieById(filmId) {
   const filters = `/movie/${filmId}?api_key=${API_KEY}`;
@@ -102,14 +104,32 @@ async function modalAppear(event) {
   }
   const response = await fetchMovieById(event.target.id);
   const markup = cardMarkup(response);
+
   refs.modalRef.innerHTML = markup;
+
+  const btnModalWatched = document.querySelector('.js-WatchedButton');
+  const btnModalQueue = document.querySelector('.js-QueueButton');
+
+  try {
+    const idFilmsQueueArray = JSON.parse(localStorage.getItem(QUEUE_KEY));
+    const idFilmsWatchedArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
+
+    if (idFilmsQueueArray.includes(event.target.id)) {
+      btnModalQueue.classList.add('modal__btn--active');
+    }
+
+    if (idFilmsWatchedArray.includes(event.target.id)) {
+      btnModalWatched.classList.add('modal__btn--active');
+    }
+  } catch (error) {}
+
   refs.modalBdrop.classList.remove('visually-hidden');
   document.body.style.overflow = 'hidden';
 
   addListeners(event);
 }
 
-function addListeners(event) {
+function addListeners() {
   btnModalWatched = document.querySelector('.js-WatchedButton');
   btnModalQueue = document.querySelector('.js-QueueButton');
   const closeButton = document.querySelector('.modal-close-btn');
@@ -229,13 +249,13 @@ async function goToWatched() {
   try {
     const idFilmsArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
     const qweqwe = await Promise.all(idFilmsArray.map(fetchMovieById));
+
     renderFilmsMarkup(qweqwe);
 
     refs.spinner.classList.add('visually-hidden');
   } catch (error) {
     Notiflix.Notify.failure('Your Watched gallery is empty!');
-    refs.libgallerySet.innerHTML =
-      '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
+    refs.libgallerySet.innerHTML = nothingPlaceHolder;
     refs.spinner.classList.add('visually-hidden');
 
     return;
@@ -260,8 +280,7 @@ async function goToQueue() {
   } catch (error) {
     Notiflix.Notify.failure('Your Queue gallery is empty!');
     refs.spinner.classList.add('visually-hidden');
-    refs.libgallerySet.innerHTML =
-      '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
+    refs.libgallerySet.innerHTML = nothingPlaceHolder;
     return;
   }
 }
@@ -270,30 +289,63 @@ function renderFilmsMarkup(films) {
   refs.libgallerySet.innerHTML = '';
 
   films
-    .map(({ poster_path, genres, title, original_title, release_date, first_air_date, id }) => {
-      const poster = poster_path
-        ? `https://image.tmdb.org/t/p/w400${poster_path}`
-        : `https://image.tmdb.org/t/p/w400/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg`;
-      return `<li class="gallery__item" data-id=${id || `No ID`}>
+    .map(
+      ({
+        poster_path,
+        genres,
+        title,
+        original_title,
+        release_date,
+        first_air_date,
+        id = 55555,
+      }) => {
+        const poster = poster_path
+          ? `https://image.tmdb.org/t/p/w400${poster_path}`
+          : `https://image.tmdb.org/t/p/w400/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg`;
+
+        return `<li class="gallery__item" data-id=${id}>
                 <div class="films__img">
                     <img class="poster" src=https://image.tmdb.org/t/p/original${poster} alt="${
-        title || original_title || 'No title'
-      }" loading="lazy" id=${id}>
+          title || original_title || 'No title'
+        }" loading="lazy" id=${id}>
                 </div>
                 <div class="film__description" id=${id}>
                   <p class="film__title" id=${id}>${title || original_title || 'No title'}</p>
                   <div class="films__meta" id=${id}>
                     <span class="films__genres" id=${id}>${
-        getGenres(genres) || 'No genres info'
-      }</span>
+          getGenres(genres) || 'No genres info'
+        }</span>
                     
                     <span class="films__sep" id=${id}>|</span>
                     <span class="films__data" id=${id}>${
-        new Date(release_date).getFullYear() || new Date(first_air_date).getFullYear() || 'No info'
-      }</span>
+          new Date(release_date).getFullYear() ||
+          new Date(first_air_date).getFullYear() ||
+          'No info'
+        }</span>
                   </div>
                 </div>
             </li>`;
-    })
+      }
+    )
     .forEach(c => refs.libgallerySet.insertAdjacentHTML('beforeend', c));
+}
+
+function getGenres(genres) {
+  const arr = [];
+
+  for (let index = 0; index < genres.length; index++) {
+    const name = Object.values(genres[index]);
+    arr.push(name[1]);
+  }
+
+  const ArrToJoin = [];
+
+  if (arr.length > 3) {
+    ArrToJoin.push(arr[0]);
+    ArrToJoin.push(arr[1]);
+    ArrToJoin.push('Other');
+    return ArrToJoin.join(', ');
+  }
+
+  return arr.join(', ');
 }

@@ -1,6 +1,6 @@
 import './js/fetchApi';
 import './js/renderMarkup';
-import './js/startPagStorage';
+
 import './js/nightMode';
 import './js/firebase/auth-modal-open';
 import './js/firebase/firebase-auth';
