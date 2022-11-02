@@ -37,7 +37,6 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-// firebase.auth().useDeviceLanguage();
 
 // connectAuthEmulator(auth, 'http://localhost:9099');
 
@@ -160,16 +159,6 @@ const onForgetPass = async () => {
     console.log(error);
   }
 };
-
-// const onForgetPass = () => {
-//   const loginEmail = email.value;
-//  auth.sendPasswordResetEmail(loginEmail).then(() => {
-//       console.log('success');
-//     })
-//  .catch {
-//     error => console.log(error);
-//   }
-// };
 
 refs.sendSignUpInfo.addEventListener('click', createAccount);
 refs.sendSignInInfo.addEventListener('click', loginEmailPassword);
