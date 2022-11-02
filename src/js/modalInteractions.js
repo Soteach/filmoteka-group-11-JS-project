@@ -5,9 +5,6 @@ import Notiflix from 'notiflix';
 const WATCHED_KEY = 'Watched_KEY';
 const QUEUE_KEY = 'Queue_KEY';
 
-let btnModalWatched = document.querySelector('.js-WatchedButton');
-let btnModalQueue = document.querySelector('.js-QueueButton');
-
 const API_KEY = 'c3923fa38d2dd62131b577696cc2f23f';
 const mainUrl = `https://api.themoviedb.org/3`;
 
@@ -107,7 +104,25 @@ async function modalAppear(event) {
   }
   const response = await fetchMovieById(event.target.id);
   const markup = cardMarkup(response);
+
   refs.modalRef.innerHTML = markup;
+
+  const btnModalWatched = document.querySelector('.js-WatchedButton');
+  const btnModalQueue = document.querySelector('.js-QueueButton');
+
+  try {
+    const idFilmsQueueArray = JSON.parse(localStorage.getItem(QUEUE_KEY));
+    const idFilmsWatchedArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
+
+    if (idFilmsQueueArray.includes(event.target.id)) {
+      btnModalQueue.classList.add('modal__btn--active');
+    }
+
+    if (idFilmsWatchedArray.includes(event.target.id)) {
+      btnModalWatched.classList.add('modal__btn--active');
+    }
+  } catch (error) {}
+
   refs.modalBdrop.classList.remove('visually-hidden');
   document.body.style.overflow = 'hidden';
 
