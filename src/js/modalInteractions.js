@@ -5,9 +5,6 @@ import Notiflix from 'notiflix';
 const WATCHED_KEY = 'Watched_KEY';
 const QUEUE_KEY = 'Queue_KEY';
 
-let btnModalWatched = document.querySelector('.js-WatchedButton');
-let btnModalQueue = document.querySelector('.js-QueueButton');
-
 const API_KEY = 'c3923fa38d2dd62131b577696cc2f23f';
 const mainUrl = `https://api.themoviedb.org/3`;
 
@@ -16,7 +13,7 @@ refs.gallery.addEventListener('click', modalAppear);
 const nothingPlaceHolder = `<li style="display: flex;align-items: center; justify-content: center;
  width: 100%; height: 592px; background: linear-gradient( 45deg, rgba(108, 9, 9, 0.8267682072829132) 0%,
  rgba(62, 65, 87, 0.83) 50%, rgba(108, 9, 9, 0.83) 100% ); " > <p style="font-size: 48px;
- font-weight: 700">Nothig added to list</p></li>`;
+ font-weight: 700">Nothing added to list</p></li>`;
 
 async function fetchMovieById(filmId) {
   const filters = `/movie/${filmId}?api_key=${API_KEY}`;
@@ -107,7 +104,25 @@ async function modalAppear(event) {
   }
   const response = await fetchMovieById(event.target.id);
   const markup = cardMarkup(response);
+
   refs.modalRef.innerHTML = markup;
+
+  const btnModalWatched = document.querySelector('.js-WatchedButton');
+  const btnModalQueue = document.querySelector('.js-QueueButton');
+
+  try {
+    const idFilmsQueueArray = JSON.parse(localStorage.getItem(QUEUE_KEY));
+    const idFilmsWatchedArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
+
+    if (idFilmsQueueArray.includes(event.target.id)) {
+      btnModalQueue.classList.add('modal__btn--active');
+    }
+
+    if (idFilmsWatchedArray.includes(event.target.id)) {
+      btnModalWatched.classList.add('modal__btn--active');
+    }
+  } catch (error) {}
+
   refs.modalBdrop.classList.remove('visually-hidden');
   document.body.style.overflow = 'hidden';
 
