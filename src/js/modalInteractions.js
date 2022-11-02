@@ -13,7 +13,7 @@ refs.gallery.addEventListener('click', modalAppear);
 const nothingPlaceHolder = `<li style="display: flex;align-items: center; justify-content: center;
  width: 100%; height: 592px; background: linear-gradient( 45deg, rgba(108, 9, 9, 0.8267682072829132) 0%,
  rgba(62, 65, 87, 0.83) 50%, rgba(108, 9, 9, 0.83) 100% ); " > <p style="font-size: 48px;
- font-weight: 700">Nothig added to list</p></li>`;
+ font-weight: 700">Nothing added to list</p></li>`;
 
 async function fetchMovieById(filmId) {
   const filters = `/movie/${filmId}?api_key=${API_KEY}`;
