@@ -26,12 +26,16 @@ async function goToWatched() {
   } catch (error) {
     Notiflix.Notify.failure('Your Watched gallery is empty!');
     refs.spinner.classList.add('visually-hidden');
-    refs.libgallerySet.innerHTML =
-      '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
+    refs.libgallerySet.innerHTML = nothingPlaceHolder;
 
     return;
   }
 }
+
+const nothingPlaceHolder = `<li style="display: flex;align-items: center; justify-content: center;
+ width: 100%; height: 592px; background: linear-gradient( 45deg, rgba(108, 9, 9, 0.8267682072829132) 0%,
+ rgba(62, 65, 87, 0.83) 50%, rgba(108, 9, 9, 0.83) 100% ); " > <p style="font-size: 48px;
+ font-weight: 700">Nothig added to list</p></li>`;
 
 async function goToQueue() {
   refs.spinner.classList.remove('visually-hidden');
@@ -48,9 +52,7 @@ async function goToQueue() {
   } catch (error) {
     Notiflix.Notify.failure('Your Queue gallery is empty!');
     refs.spinner.classList.add('visually-hidden');
-    refs.libgallerySet.innerHTML =
-      '<li style="width: 100%;"><img class="empty-library" src="./images/NHD.jpg" alt="Nothing found" /></li>';
-
+    refs.libgallerySet.innerHTML = nothingPlaceHolder;
     return;
   }
 }
