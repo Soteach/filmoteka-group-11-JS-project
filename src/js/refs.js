@@ -24,7 +24,7 @@ export const refs = {
 
   modalRef: document.querySelector('#myModal'),
   modalBdrop: document.querySelector('.box'),
-
+  forgotBtn: document.querySelector('.forgot__btn'),
   upBtn: document.querySelector('[data-up]'),
   bodyEl: document.querySelector('body'),
   htmlEl: document.querySelector('html'),
