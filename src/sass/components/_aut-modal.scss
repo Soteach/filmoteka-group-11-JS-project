@@ -20,7 +20,9 @@ body.no_scroll {
   margin: 0;
   height: 100%;
   // scrollbar-gutter: stable;
-  width: calc(100vw - 17px);
+  // -webkit-scrollbar-gutter: stable;
+  // -webkit-width: calc(100vw - 17px);
+  // width: 100vw;
 }
 
 .auth-modal {
