@@ -11,7 +11,6 @@ import {
   getAuth,
   connectAuthEmulator,
   signInWithEmailAndPassword,
-  sendPasswordResetEmail,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signOut,
@@ -19,8 +18,6 @@ import {
   signInWithPopup,
   setPersistence,
   browserSessionPersistence,
-  useDeviceLanguage,
-  confirmPasswordReset,
 } from 'firebase/auth';
 import { onLogIn, onLogOut } from './firebaseFunc';
 
@@ -37,6 +34,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+// firebase.auth().useDeviceLanguage();
 
 // connectAuthEmulator(auth, 'http://localhost:9099');
 
@@ -125,7 +123,7 @@ const monitorAuthState = async () => {
 };
 
 monitorAuthState();
-// useDeviceLanguage();
+
 // setPersistence(auth, browserSessionPersistence)
 //   .then(() => {
 //     // Existing and future Auth states are now persisted in the current
@@ -147,21 +145,7 @@ const logout = async () => {
   onLogOut();
 };
 
-const onForgetPass = async () => {
-  const loginEmail = email.value;
-
-  try {
-    await sendPasswordResetEmail(auth, loginEmail).then(result => {
-      console.log('success', loginEmail);
-      // confirmPasswordReset(result);
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 refs.sendSignUpInfo.addEventListener('click', createAccount);
 refs.sendSignInInfo.addEventListener('click', loginEmailPassword);
 refs.btnLogout.addEventListener('click', logout);
 refs.btnGoogle.addEventListener('click', signInGoogle);
-refs.forgotBtn.addEventListener('click', onForgetPass);
