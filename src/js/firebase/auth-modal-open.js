@@ -1,12 +1,18 @@
 import { refs } from '../refs';
 
 refs.signInBtn.addEventListener('click', onSignInModal);
-refs.closeAuthBtn.addEventListener('click', onSignInModal);
+refs.closeAuthBtn.addEventListener('click', onModalClose);
 refs.authForm.addEventListener('submit', authFormHandler);
 document.addEventListener('keydown', onEsc);
 refs.authBackdrop.addEventListener('click', clickOnAnyPlace);
 
 function onSignInModal() {
+  refs.authModal.classList.toggle('visually-hidden');
+  refs.bodyEl.classList.toggle('no_scroll');
+}
+
+function onModalClose() {
+  window.removeEventListener('keydown', onEsc);
   refs.authModal.classList.toggle('visually-hidden');
   refs.bodyEl.classList.toggle('no_scroll');
 }
