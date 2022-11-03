@@ -5,6 +5,7 @@ import {
   showLoginSuccess,
   showCreateLoginSuccess,
   logOutNotification,
+  showRequestSuccess,
 } from './firebaseNotifications';
 import { initializeApp } from 'firebase/app';
 import {
@@ -20,7 +21,6 @@ import {
   setPersistence,
   browserSessionPersistence,
   useDeviceLanguage,
-  confirmPasswordReset,
 } from 'firebase/auth';
 import { onLogIn, onLogOut } from './firebaseFunc';
 
@@ -148,20 +148,39 @@ const logout = async () => {
 };
 
 const onForgetPass = async () => {
-  const loginEmail = email.value;
+  const loginEmail = email1.value;
 
   try {
     await sendPasswordResetEmail(auth, loginEmail).then(result => {
-      console.log('success', loginEmail);
-      // confirmPasswordReset(result);
+      // console.log('success', loginEmail);
+      showRequestSuccess();
+      refs.forgetBackdrop.classList.toggle('visually-hidden');
     });
   } catch (error) {
     console.log(error);
   }
 };
 
+function onOpenForgetModal() {
+  refs.forgetBackdrop.classList.toggle('visually-hidden');
+  refs.resetBtn.addEventListener('click', onForgetPass);
+}
+
+function onCloseForgetModal() {
+  refs.forgetBackdrop.classList.toggle('visually-hidden');
+  window.removeEventListener('keydown', onEsc);
+}
+
+function onEsc(evt) {
+  if (evt.key === 'Escape') {
+    refs.forgetBackdrop.classList.add('visually-hidden');
+  }
+}
+document.addEventListener('keydown', onEsc);
+
 refs.sendSignUpInfo.addEventListener('click', createAccount);
 refs.sendSignInInfo.addEventListener('click', loginEmailPassword);
 refs.btnLogout.addEventListener('click', logout);
 refs.btnGoogle.addEventListener('click', signInGoogle);
-refs.forgotBtn.addEventListener('click', onForgetPass);
+refs.forgotBtn.addEventListener('click', onOpenForgetModal);
+refs.closeResetBtn.addEventListener('click', onCloseForgetModal);
