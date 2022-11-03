@@ -6,6 +6,7 @@ import './js/firebase/auth-modal-open';
 import './js/firebase/firebase-auth';
 import './js/firebase/firebaseFunc';
 import './js/firebase/firebaseNotifications';
+import './js/firebase/firebase-database';
 import './js/spinner';
 import './js/pagination';
 import './js/modalInteractions';

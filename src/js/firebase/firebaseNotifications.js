@@ -2,7 +2,7 @@ import Notiflix from 'notiflix';
 import { AuthErrorCodes } from 'firebase/auth';
 
 export function showLoginError(error) {
-  if (error.code === AuthErrorCodes.INVALID_PASSWORD) {
+  if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
     Notiflix.Notify.failure(
       'The password is wrong, my friend! Please try again!',
       {
