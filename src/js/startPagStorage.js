@@ -35,7 +35,7 @@ function loadAndRenderTrendingMovies(page) {
       renderFilmsMarkup(data.results);
       renderPager(data.page, data.total_pages, onSelectPage);
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log());
 }
 
 function onSelectPage(page) {

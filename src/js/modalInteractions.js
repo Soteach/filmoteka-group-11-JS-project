@@ -2,6 +2,9 @@ import { refs } from './refs';
 import axios from 'axios';
 import Notiflix from 'notiflix';
 
+let btnModalWatched = '';
+let btnModalQueue = '';
+
 const WATCHED_KEY = 'Watched_KEY';
 const QUEUE_KEY = 'Queue_KEY';
 
@@ -107,19 +110,22 @@ async function modalAppear(event) {
 
   refs.modalRef.innerHTML = markup;
 
-  const btnModalWatched = document.querySelector('.js-WatchedButton');
-  const btnModalQueue = document.querySelector('.js-QueueButton');
+  btnModalWatched = document.querySelector('.js-WatchedButton');
+  btnModalQueue = document.querySelector('.js-QueueButton');
 
   try {
     const idFilmsQueueArray = JSON.parse(localStorage.getItem(QUEUE_KEY));
     const idFilmsWatchedArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
 
-    if (idFilmsQueueArray.includes(event.target.id)) {
-      btnModalQueue.classList.add('modal__btn--active');
+    if (idFilmsQueueArray) {
+      if (idFilmsQueueArray.includes(event.target.id)) {
+        btnModalQueue.classList.add('modal__btn--active');
+      }
     }
-
-    if (idFilmsWatchedArray.includes(event.target.id)) {
-      btnModalWatched.classList.add('modal__btn--active');
+    if (idFilmsWatchedArray) {
+      if (idFilmsWatchedArray.includes(event.target.id)) {
+        btnModalWatched.classList.add('modal__btn--active');
+      }
     }
   } catch (error) {}
 
@@ -146,7 +152,8 @@ function putWatchedIdtoLocalStorage(event) {
 
   try {
     const checkIfNull = localStorage.getItem(WATCHED_KEY);
-    const currentWatchedArr = checkIfNull === null ? [] : JSON.parse(checkIfNull);
+    const currentWatchedArr =
+      checkIfNull === null ? [] : JSON.parse(checkIfNull);
 
     if (currentWatchedArr) {
       if (currentWatchedArr.includes(filmId)) {
@@ -310,7 +317,9 @@ function renderFilmsMarkup(films) {
         }" loading="lazy" id=${id}>
                 </div>
                 <div class="film__description" id=${id}>
-                  <p class="film__title" id=${id}>${title || original_title || 'No title'}</p>
+                  <p class="film__title" id=${id}>${
+          title || original_title || 'No title'
+        }</p>
                   <div class="films__meta" id=${id}>
                     <span class="films__genres" id=${id}>${
           getGenres(genres) || 'No genres info'
