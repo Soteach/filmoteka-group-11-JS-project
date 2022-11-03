@@ -117,16 +117,16 @@ async function modalAppear(event) {
     const idFilmsQueueArray = JSON.parse(localStorage.getItem(QUEUE_KEY));
     const idFilmsWatchedArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
 
-    if (idFilmsQueueArray) {
-      if (idFilmsQueueArray.includes(event.target.id)) {
-        btnModalQueue.classList.add('modal__btn--active');
-      }
+    // if (idFilmsQueueArray) {
+    if (idFilmsQueueArray.includes(event.target.id)) {
+      btnModalQueue.classList.add('modal__btn--active');
     }
-    if (idFilmsWatchedArray) {
-      if (idFilmsWatchedArray.includes(event.target.id)) {
-        btnModalWatched.classList.add('modal__btn--active');
-      }
+    // }
+    // if (idFilmsWatchedArray) {
+    if (idFilmsWatchedArray.includes(event.target.id)) {
+      btnModalWatched.classList.add('modal__btn--active');
     }
+    // }
   } catch (error) {}
 
   refs.modalBdrop.classList.remove('visually-hidden');
