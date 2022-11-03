@@ -117,16 +117,16 @@ async function modalAppear(event) {
     const idFilmsQueueArray = JSON.parse(localStorage.getItem(QUEUE_KEY));
     const idFilmsWatchedArray = JSON.parse(localStorage.getItem(WATCHED_KEY));
 
-    // if (idFilmsQueueArray) {
+    if (idFilmsQueueArray) {
     if (idFilmsQueueArray.includes(event.target.id)) {
       btnModalQueue.classList.add('modal__btn--active');
     }
-    // }
-    // if (idFilmsWatchedArray) {
+    }
+    if (idFilmsWatchedArray) {
     if (idFilmsWatchedArray.includes(event.target.id)) {
       btnModalWatched.classList.add('modal__btn--active');
     }
-    // }
+    }
   } catch (error) {}
 
   refs.modalBdrop.classList.remove('visually-hidden');
@@ -152,21 +152,20 @@ function putWatchedIdtoLocalStorage(event) {
 
   try {
     const checkIfNull = localStorage.getItem(WATCHED_KEY);
-    const currentWatchedArr =
-      checkIfNull === null ? [] : JSON.parse(checkIfNull);
-
+    let currentWatchedArr = checkIfNull === null ? [] : JSON.parse(checkIfNull);
     if (currentWatchedArr) {
       if (currentWatchedArr.includes(filmId)) {
         currentWatchedArr.splice(currentWatchedArr.indexOf(filmId), 1);
         if (currentWatchedArr.length === 0) {
           localStorage.removeItem(WATCHED_KEY);
+          btnModalQueue = document.querySelector('.js-WatchedButton');
+          btnModalQueue.classList.remove('modal__btn--active');
           return;
         }
         const filmSTRING = JSON.stringify(currentWatchedArr);
         localStorage.setItem(WATCHED_KEY, filmSTRING);
         btnModalWatched = document.querySelector('.js-WatchedButton');
         btnModalWatched.classList.remove('modal__btn--active');
-
         return;
       }
 
@@ -193,6 +192,8 @@ function putQueueIdtoLocalStorage(event) {
         currentQueueArr.splice(currentQueueArr.indexOf(filmId), 1);
         if (currentQueueArr.length === 0) {
           localStorage.removeItem(QUEUE_KEY);
+          btnModalQueue = document.querySelector('.js-QueueButton');
+          btnModalQueue.classList.remove('modal__btn--active');
           return;
         }
         const filmSTRING = JSON.stringify(currentQueueArr);
@@ -213,6 +214,7 @@ function putQueueIdtoLocalStorage(event) {
     console.error(error);
   }
 }
+
 
 ////////////modal close functional
 
