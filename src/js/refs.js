@@ -1,5 +1,6 @@
 export const refs = {
   searchForm: document.querySelector('.header-search__form'),
+  searchInput: document.querySelector('.header-search-input'),
   gallery: document.querySelector('.gallery'),
   spinner: document.querySelector('.loader'),
   gallerySet: document.querySelector('.gallery__set'),
