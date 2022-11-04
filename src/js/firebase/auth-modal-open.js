@@ -11,7 +11,7 @@ function onSignInModal() {
   refs.bodyEl.classList.toggle('no_scroll');
 }
 
-function onModalClose() {
+export function onModalClose() {
   window.removeEventListener('keydown', onEsc);
   refs.authModal.classList.toggle('visually-hidden');
   refs.bodyEl.classList.toggle('no_scroll');

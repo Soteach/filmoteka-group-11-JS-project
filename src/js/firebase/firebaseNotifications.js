@@ -25,6 +25,12 @@ export function showLoginSuccess() {
   });
 }
 
+export function showRequestSuccess() {
+  Notiflix.Notify.success('The request sent! Please check spam!', {
+    timeout: 3000,
+  });
+}
+
 export function showCreateLoginSuccess() {
   Notiflix.Notify.success(`Welcome on the board, pal!`, {
     timeout: 3000,

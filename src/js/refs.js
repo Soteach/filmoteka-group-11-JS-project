@@ -29,4 +29,8 @@ export const refs = {
   upBtn: document.querySelector('[data-up]'),
   bodyEl: document.querySelector('body'),
   htmlEl: document.querySelector('html'),
+  forgetModal: document.querySelector('.forget-modal'),
+  resetBtn: document.querySelector('.reset__btn'),
+  forgetBackdrop: document.querySelector('.forget-modal-backdrop'),
+  closeResetBtn: document.querySelector('[data-modal-cloe]'),
 };
